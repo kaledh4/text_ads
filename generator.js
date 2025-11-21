@@ -89,7 +89,7 @@ async function generateAds() {
     المطلوب:
     1. قائمة بـ 10 إعلانات قصيرة (تغريدات) لمنصة X.
     2. قائمة بـ 10 إعلانات جذابة لمنصة Instagram.
-    3. قائمة بـ 5 أفكار فيديوهات لمنصة TikTok.
+    3. قائمة بـ 4 أفكار فيديوهات لمنصة TikTok.
     
     الشروط:
     - **يجب ذكر اسم التطبيق "تكلفة" في جميع الإعلانات.**
@@ -99,10 +99,48 @@ async function generateAds() {
     - ركز على الفوائد (زيادة المبيعات، الوصول للعملاء، السهولة).
     - أضف إيموجي وهاشتاقات مناسبة أخرى.
     
-    بالنسبة لـ TikTok، كل عنصر يجب أن يحتوي على:
-    - idea: فكرة الفيديو (السيناريو).
-    - directing: توجيهات للإخراج والتصوير.
-    - prompt: وصف دقيق (Prompt) لتوليد صورة مصغرة أو مشهد باستخدام Nano Banana.
+    بالنسبة لـ TikTok، يجب أن تعيد قائمة من 4 عناصر. كل عنصر يجب أن يكون كائن JSON كامل يتبع الهيكل التالي بدقة، مع تغيير المحتوى (الفكرة والسيناريو) لكل فيديو ليكون فريداً:
+
+    Structure Example (Do not copy the content, only the structure):
+    {
+      "shot": {
+        "composition": "وصف التكوين...",
+        "camera_motion": "حركة الكاميرا...",
+        "frame_rate": "24fps",
+        "film_grain": "وصف الحبيبات..."
+      },
+      "subject": {
+        "description": "وصف الشخصية...",
+        "wardrobe": "وصف الملابس...",
+        "mic_position": "موقع المايك..."
+      },
+      "scene": {
+        "location": "الموقع...",
+        "environment": "البيئة..."
+      },
+      "visual_details": [
+        "action 1: ...",
+        "action 2: ...",
+        "action 3: ..."
+      ],
+      "cinematography": {
+        "lighting": "الإضاءة...",
+        "tone": "النبرة..."
+      },
+      "audio": {
+        "ambient": "الأصوات المحيطة...",
+        "voice": {
+          "tone": "نبرة الصوت...",
+          "style": "الأسلوب...",
+          "talk": ["Owner: ..."]
+        },
+        "lyrics": ""
+      },
+      "color_palette": ["#Hex1", "#Hex2", ...],
+      "visual_rules": {
+        "prohibited_elements": ["no logos", "no overlays", ...]
+      }
+    }
 
     CRITICAL: Return ONLY valid JSON. Do not include markdown formatting like \`\`\`json.
     Format:
@@ -116,12 +154,10 @@ async function generateAds() {
             ...
         ],
         "tiktok_ads": [
-            {
-                "idea": "فكرة الفيديو...",
-                "directing": "طريقة التصوير...",
-                "prompt": "وصف الصورة..."
-            },
-            ...
+            { "shot": { ... }, "subject": { ... }, ... },
+            { "shot": { ... }, "subject": { ... }, ... },
+            { "shot": { ... }, "subject": { ... }, ... },
+            { "shot": { ... }, "subject": { ... }, ... }
         ]
     }
     `;
