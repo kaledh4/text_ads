@@ -1,27 +1,206 @@
 [
   {
-    "idea": "يوم في حياة صاحب محل يستخدم تطبيق تكلفة",
-    "directing": "تصوير فيديو قصير يظهر صاحب محل يقوم بإضافة منتجاته على تطبيق تكلفة بسهولة وسرعة، ثم يظهر وهو يستقبل طلبات العملاء عبر الواتساب.",
-    "prompt": "صاحب متجر سعودي مبتسم يستخدم تطبيق على جواله، خلفية المتجر مليئة بالمنتجات."
+    "shot": {
+      "composition": "rule-of-thirds sequence starting medium close-up of subject then wide establishing over-the-shoulder",
+      "camera_motion": "steadicam tracking push-in to owner, smooth dolly-out to wide, subtle rack-focus to phone screen",
+      "frame_rate": "24fps",
+      "film_grain": "subtle 35mm grain"
+    },
+    "subject": {
+      "description": "Character description says: صاحب متجر سعودي مبتسم، عمره 30-45، بنية متوسطة، لحية قصيرة، شعر مرتب، حركات يدوية وودودة.",
+      "wardrobe": "قميص قطني أخضر فاتح، مئزر متجر بني قماشي، ساعة معصم بسيطة، خاتم فضي، أقمشة غير لامعة",
+      "mic_position": "lav mic on lapel left, boom overhead for wide, phone internal mic for close-up"
+    },
+    "scene": {
+      "location": "محل تجزئة صغير في السعودية, رفوف خشبية ممتلئة بمنتجات محلية, عصري-حقيقي, نهار داخلي مع إضاءة متجر دافئة",
+      "environment": "لوحة أسعار صغيرة، لافتة خلف الكاونتر، صندوق تسجيل المبيعات، زجاج واجهة بلمسات ضوئية، عملاء متفرّقون في الخلفية"
+    },
+    "visual_details": [
+      "action 1: places smartphone on counter, smiles and taps app, eyes focused; micro-gesture: nods satisfied; camera: medium close-up, slight dolly-in to phone screen",
+      "action 2: quickly scans product label, types price and photo, thumbs swipe; facial expression: confident, playful eyebrow raise; camera: over-the-shoulder top-down to UI, rack-focus to product",
+      "action 3: receives WhatsApp order notification, glances up and waves to customer, taps accept and types reply; expression: warm and efficient; camera: dolly-out to wide showing store bustle"
+    ],
+    "cinematography": {
+      "lighting": "key: soft warm LED from front-left, fill: gentle bounce from right, practicals: hanging filament bulbs, time-of-day: late morning, slight backlight rim for separation",
+      "tone": "friendly, efficient, optimistic, small-business charm"
+    },
+    "audio": {
+      "ambient": "soft store hum, distant street traffic, occasional footstep, faint product rustle, phone notification ping (distinct WhatsApp tone)",
+      "voice": {
+        "tone": "warm, upbeat",
+        "style": "neutral Saudi Arabic timbre, conversational",
+        "talk": [
+          "Owner: Adding product to Taklefa app, quick and done!"
+        ]
+      },
+      "lyrics": ""
+    },
+    "color_palette": [
+      "#E6F6EE",
+      "#8FBF6F",
+      "#A37B52",
+      "#2D2D2D"
+    ],
+    "visual_rules": {
+      "prohibited_elements": [
+        "no visible brand logos beyond store name",
+        "no on-screen UI overlays except the app UI being demonstrated",
+        "subtitles",
+        "no explicit personal data on-screen (blur receipts if present)"
+      ]
+    }
   },
   {
-    "idea": "مقارنة بين التسويق التقليدي واستخدام تطبيق تكلفة",
-    "directing": "تصوير فيديو بتقسيم الشاشة إلى نصفين، نصف يمثل التسويق التقليدي (إعلانات ورقية، لوحات إعلانية)، والنصف الآخر يمثل تطبيق تكلفة (خريطة تفاعلية، سهولة الوصول للعملاء).",
-    "prompt": "مقارنة بين طريقة تسويق قديمة وطريقة تسويق حديثة عن طريق تطبيق."
+    "shot": {
+      "composition": "rule-of-thirds sequence starting medium close-up of subject then wide establishing over-the-shoulder",
+      "camera_motion": "steadicam tracking push-in to owner, smooth dolly-out to wide, subtle rack-focus to phone screen",
+      "frame_rate": "24fps",
+      "film_grain": "subtle 35mm grain"
+    },
+    "subject": {
+      "description": "Character description says: صاحب متجر سعودي مبتسم، عمره 30-45، بنية متوسطة، لحية قصيرة، شعر مرتب، حركات يدوية وودودة.",
+      "wardrobe": "قميص قطني أخضر فاتح، مئزر متجر بني قماشي، ساعة معصم بسيطة، خاتم فضي، أقمشة غير لامعة",
+      "mic_position": "lav mic on lapel left, boom overhead for wide, phone internal mic for close-up"
+    },
+    "scene": {
+      "location": "محل تجزئة صغير في السعودية, رفوف خشبية ممتلئة بمنتجات محلية, عصري-حقيقي, نهار داخلي مع إضاءة متجر دافئة",
+      "environment": "لوحة أسعار صغيرة، لافتة خلف الكاونتر، صندوق تسجيل المبيعات، زجاج واجهة بلمسات ضوئية، عملاء متفرّقون في الخلفية"
+    },
+    "visual_details": [
+      "action 1: places smartphone on counter, smiles and taps app, eyes focused; micro-gesture: nods satisfied; camera: medium close-up, slight dolly-in to phone screen",
+      "action 2: quickly scans product label, types price and photo, thumbs swipe; facial expression: confident, playful eyebrow raise; camera: over-the-shoulder top-down to UI, rack-focus to product",
+      "action 3: receives WhatsApp order notification, glances up and waves to customer, taps accept and types reply; expression: warm and efficient; camera: dolly-out to wide showing store bustle"
+    ],
+    "cinematography": {
+      "lighting": "key: soft warm LED from front-left, fill: gentle bounce from right, practicals: hanging filament bulbs, time-of-day: late morning, slight backlight rim for separation",
+      "tone": "friendly, efficient, optimistic, small-business charm"
+    },
+    "audio": {
+      "ambient": "soft store hum, distant street traffic, occasional footstep, faint product rustle, phone notification ping (distinct WhatsApp tone)",
+      "voice": {
+        "tone": "warm, upbeat",
+        "style": "neutral Saudi Arabic timbre, conversational",
+        "talk": [
+          "Owner: Adding product to Taklefa app, quick and done!"
+        ]
+      },
+      "lyrics": ""
+    },
+    "color_palette": [
+      "#E6F6EE",
+      "#8FBF6F",
+      "#A37B52",
+      "#2D2D2D"
+    ],
+    "visual_rules": {
+      "prohibited_elements": [
+        "no visible brand logos beyond store name",
+        "no on-screen UI overlays except the app UI being demonstrated",
+        "subtitles",
+        "no explicit personal data on-screen (blur receipts if present)"
+      ]
+    }
   },
   {
-    "idea": "استعراض ميزة الذكاء الاصطناعي في تطبيق تكلفة",
-    "directing": "تصوير فيديو يظهر كيف يقوم التطبيق تلقائيًا بإنشاء وصف للمنتج بمجرد تصويره، مع التركيز على سهولة الاستخدام والوقت الذي يتم توفيره.",
-    "prompt": "برنامج ذكاء اصطناعي يحلل صورة منتج ويصفه."
+    "shot": {
+      "composition": "rule-of-thirds sequence starting medium close-up of subject then wide establishing over-the-shoulder",
+      "camera_motion": "steadicam tracking push-in to owner, smooth dolly-out to wide, subtle rack-focus to phone screen",
+      "frame_rate": "24fps",
+      "film_grain": "subtle 35mm grain"
+    },
+    "subject": {
+      "description": "Character description says: صاحب متجر سعودي مبتسم، عمره 30-45، بنية متوسطة، لحية قصيرة، شعر مرتب، حركات يدوية وودودة.",
+      "wardrobe": "قميص قطني أخضر فاتح، مئزر متجر بني قماشي، ساعة معصم بسيطة، خاتم فضي، أقمشة غير لامعة",
+      "mic_position": "lav mic on lapel left, boom overhead for wide, phone internal mic for close-up"
+    },
+    "scene": {
+      "location": "محل تجزئة صغير في السعودية, رفوف خشبية ممتلئة بمنتجات محلية, عصري-حقيقي, نهار داخلي مع إضاءة متجر دافئة",
+      "environment": "لوحة أسعار صغيرة، لافتة خلف الكاونتر، صندوق تسجيل المبيعات، زجاج واجهة بلمسات ضوئية، عملاء متفرّقون في الخلفية"
+    },
+    "visual_details": [
+      "action 1: places smartphone on counter, smiles and taps app, eyes focused; micro-gesture: nods satisfied; camera: medium close-up, slight dolly-in to phone screen",
+      "action 2: quickly scans product label, types price and photo, thumbs swipe; facial expression: confident, playful eyebrow raise; camera: over-the-shoulder top-down to UI, rack-focus to product",
+      "action 3: receives WhatsApp order notification, glances up and waves to customer, taps accept and types reply; expression: warm and efficient; camera: dolly-out to wide showing store bustle"
+    ],
+    "cinematography": {
+      "lighting": "key: soft warm LED from front-left, fill: gentle bounce from right, practicals: hanging filament bulbs, time-of-day: late morning, slight backlight rim for separation",
+      "tone": "friendly, efficient, optimistic, small-business charm"
+    },
+    "audio": {
+      "ambient": "soft store hum, distant street traffic, occasional footstep, faint product rustle, phone notification ping (distinct WhatsApp tone)",
+      "voice": {
+        "tone": "warm, upbeat",
+        "style": "neutral Saudi Arabic timbre, conversational",
+        "talk": [
+          "Owner: Adding product to Taklefa app, quick and done!"
+        ]
+      },
+      "lyrics": ""
+    },
+    "color_palette": [
+      "#E6F6EE",
+      "#8FBF6F",
+      "#A37B52",
+      "#2D2D2D"
+    ],
+    "visual_rules": {
+      "prohibited_elements": [
+        "no visible brand logos beyond store name",
+        "no on-screen UI overlays except the app UI being demonstrated",
+        "subtitles",
+        "no explicit personal data on-screen (blur receipts if present)"
+      ]
+    }
   },
   {
-    "idea": "شهادات من أصحاب متاجر يستخدمون تطبيق تكلفة",
-    "directing": "تصوير سلسلة من المقاطع القصيرة لأصحاب متاجر يتحدثون عن تجربتهم الإيجابية مع تطبيق تكلفة وكيف ساعدهم في زيادة مبيعاتهم.",
-    "prompt": "صاحب متجر سعودي يتحدث عن تجربته مع تطبيق لزيادة المبيعات."
-  },
-  {
-    "idea": "عرض تقديمي سريع لتطبيق تكلفة مع التركيز على الفوائد",
-    "directing": "تصوير فيديو سريع وملفت للانتباه يعرض واجهة التطبيق وكيفية استخدامه، مع التركيز على الفوائد الرئيسية مثل زيادة المبيعات والوصول للعملاء الجدد.",
-    "prompt": "صورة واجهة تطبيق سهلة الاستخدام مع التركيز على زيادة المبيعات والوصول للعملاء الجدد."
+    "shot": {
+      "composition": "rule-of-thirds sequence starting medium close-up of subject then wide establishing over-the-shoulder",
+      "camera_motion": "steadicam tracking push-in to owner, smooth dolly-out to wide, subtle rack-focus to phone screen",
+      "frame_rate": "24fps",
+      "film_grain": "subtle 35mm grain"
+    },
+    "subject": {
+      "description": "Character description says: صاحب متجر سعودي مبتسم، عمره 30-45، بنية متوسطة، لحية قصيرة، شعر مرتب، حركات يدوية وودودة.",
+      "wardrobe": "قميص قطني أخضر فاتح، مئزر متجر بني قماشي، ساعة معصم بسيطة، خاتم فضي، أقمشة غير لامعة",
+      "mic_position": "lav mic on lapel left, boom overhead for wide, phone internal mic for close-up"
+    },
+    "scene": {
+      "location": "محل تجزئة صغير في السعودية, رفوف خشبية ممتلئة بمنتجات محلية, عصري-حقيقي, نهار داخلي مع إضاءة متجر دافئة",
+      "environment": "لوحة أسعار صغيرة، لافتة خلف الكاونتر، صندوق تسجيل المبيعات، زجاج واجهة بلمسات ضوئية، عملاء متفرّقون في الخلفية"
+    },
+    "visual_details": [
+      "action 1: places smartphone on counter, smiles and taps app, eyes focused; micro-gesture: nods satisfied; camera: medium close-up, slight dolly-in to phone screen",
+      "action 2: quickly scans product label, types price and photo, thumbs swipe; facial expression: confident, playful eyebrow raise; camera: over-the-shoulder top-down to UI, rack-focus to product",
+      "action 3: receives WhatsApp order notification, glances up and waves to customer, taps accept and types reply; expression: warm and efficient; camera: dolly-out to wide showing store bustle"
+    ],
+    "cinematography": {
+      "lighting": "key: soft warm LED from front-left, fill: gentle bounce from right, practicals: hanging filament bulbs, time-of-day: late morning, slight backlight rim for separation",
+      "tone": "friendly, efficient, optimistic, small-business charm"
+    },
+    "audio": {
+      "ambient": "soft store hum, distant street traffic, occasional footstep, faint product rustle, phone notification ping (distinct WhatsApp tone)",
+      "voice": {
+        "tone": "warm, upbeat",
+        "style": "neutral Saudi Arabic timbre, conversational",
+        "talk": [
+          "Owner: Adding product to Taklefa app, quick and done!"
+        ]
+      },
+      "lyrics": ""
+    },
+    "color_palette": [
+      "#E6F6EE",
+      "#8FBF6F",
+      "#A37B52",
+      "#2D2D2D"
+    ],
+    "visual_rules": {
+      "prohibited_elements": [
+        "no visible brand logos beyond store name",
+        "no on-screen UI overlays except the app UI being demonstrated",
+        "subtitles",
+        "no explicit personal data on-screen (blur receipts if present)"
+      ]
+    }
   }
 ]

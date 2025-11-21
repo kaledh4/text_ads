@@ -76,43 +76,82 @@ function updateAdDisplay() {
             // TikTok structured ad
             card.classList.add('tiktok-card');
 
-            // Idea Section
-            const ideaTitle = document.createElement('h3');
-            ideaTitle.textContent = '🎥 فكرة الفيديو:';
-            const ideaText = document.createElement('p');
-            ideaText.textContent = item.idea;
-            const ideaCopy = createCopyButton(item.idea);
+            // TikTok structured ad
+            card.classList.add('tiktok-card');
 
-            // Directing Section
-            const directTitle = document.createElement('h3');
-            directTitle.textContent = '🎬 الإخراج:';
-            const directText = document.createElement('p');
-            directText.textContent = item.directing;
-            const directCopy = createCopyButton(item.directing);
+            if (item.shot) {
+                // New JSON format for Video AI
+                const title = document.createElement('h3');
+                title.textContent = '🎥 AI Video Prompt (JSON)';
 
-            // Prompt Section
-            const promptTitle = document.createElement('h3');
-            promptTitle.textContent = '🤖 Nano Banana Prompt:';
-            const promptText = document.createElement('p');
-            promptText.className = 'prompt-text';
-            promptText.textContent = item.prompt;
-            const promptCopy = createCopyButton(item.prompt);
+                const desc = document.createElement('p');
+                desc.style.fontSize = '0.9em';
+                desc.style.color = '#555';
+                desc.style.marginBottom = '10px';
+                desc.textContent = (item.subject && item.subject.description)
+                    ? item.subject.description.substring(0, 120) + '...'
+                    : 'Video Generation Prompt';
 
-            card.appendChild(ideaTitle);
-            card.appendChild(ideaText);
-            card.appendChild(ideaCopy);
+                const copyBtn = createCopyButton(JSON.stringify(item, null, 2));
+                copyBtn.textContent = '📋 نسخ كود JSON';
+                copyBtn.style.width = '100%';
+                copyBtn.style.marginTop = 'auto'; // Push to bottom
 
-            card.appendChild(document.createElement('hr'));
+                // Add a pre tag to show a preview of the JSON (optional, but good for verification)
+                const pre = document.createElement('pre');
+                pre.style.maxHeight = '150px';
+                pre.style.overflow = 'auto';
+                pre.style.background = '#f4f4f4';
+                pre.style.padding = '5px';
+                pre.style.fontSize = '0.7em';
+                pre.style.borderRadius = '4px';
+                pre.textContent = JSON.stringify(item, null, 2);
 
-            card.appendChild(directTitle);
-            card.appendChild(directText);
-            card.appendChild(directCopy);
+                card.appendChild(title);
+                card.appendChild(desc);
+                card.appendChild(pre);
+                card.appendChild(copyBtn);
 
-            card.appendChild(document.createElement('hr'));
+            } else {
+                // Old format
+                // Idea Section
+                const ideaTitle = document.createElement('h3');
+                ideaTitle.textContent = '🎥 فكرة الفيديو:';
+                const ideaText = document.createElement('p');
+                ideaText.textContent = item.idea;
+                const ideaCopy = createCopyButton(item.idea);
 
-            card.appendChild(promptTitle);
-            card.appendChild(promptText);
-            card.appendChild(promptCopy);
+                // Directing Section
+                const directTitle = document.createElement('h3');
+                directTitle.textContent = '🎬 الإخراج:';
+                const directText = document.createElement('p');
+                directText.textContent = item.directing;
+                const directCopy = createCopyButton(item.directing);
+
+                // Prompt Section
+                const promptTitle = document.createElement('h3');
+                promptTitle.textContent = '🤖 Nano Banana Prompt:';
+                const promptText = document.createElement('p');
+                promptText.className = 'prompt-text';
+                promptText.textContent = item.prompt;
+                const promptCopy = createCopyButton(item.prompt);
+
+                card.appendChild(ideaTitle);
+                card.appendChild(ideaText);
+                card.appendChild(ideaCopy);
+
+                card.appendChild(document.createElement('hr'));
+
+                card.appendChild(directTitle);
+                card.appendChild(directText);
+                card.appendChild(directCopy);
+
+                card.appendChild(document.createElement('hr'));
+
+                card.appendChild(promptTitle);
+                card.appendChild(promptText);
+                card.appendChild(promptCopy);
+            }
         }
 
         container.appendChild(card);
