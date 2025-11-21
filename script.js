@@ -76,8 +76,7 @@ function updateAdDisplay() {
             // TikTok structured ad
             card.classList.add('tiktok-card');
 
-            // TikTok structured ad
-            card.classList.add('tiktok-card');
+
 
             if (item.shot) {
                 // New JSON format for Video AI
