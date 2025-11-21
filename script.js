@@ -14,7 +14,14 @@ function init() {
 async function loadAds(type) {
     renderLoading();
 
-    const fileName = type === 'x' ? 'ads_x.json' : 'ads_ig.json';
+    // Update Theme Classes
+    container.classList.remove('theme-x', 'theme-ig', 'theme-tiktok');
+    container.classList.add(`theme-${type}`);
+
+    let fileName;
+    if (type === 'x') fileName = 'ads_x.json';
+    else if (type === 'ig') fileName = 'ads_ig.json';
+    else fileName = 'ads_tiktok.json';
 
     try {
         // Add a timestamp to prevent caching
@@ -52,26 +59,62 @@ function updateAdDisplay() {
     // Slice the ads for the current view
     const visibleAds = currentAds.slice(currentIndex, currentIndex + ADS_PER_PAGE);
 
-    visibleAds.forEach(text => {
+    visibleAds.forEach(item => {
         const card = document.createElement('div');
         card.className = 'ad-card';
 
-        const copyBtn = document.createElement('button');
-        copyBtn.className = 'copy-btn';
-        copyBtn.textContent = 'نسخ';
-        copyBtn.onclick = () => {
-            navigator.clipboard.writeText(text).then(() => {
-                copyBtn.textContent = 'تم!';
-                setTimeout(() => copyBtn.textContent = 'نسخ', 1500);
-            });
-        };
+        if (typeof item === 'string') {
+            // Standard text ad (X or IG)
+            const copyBtn = createCopyButton(item);
+            const p = document.createElement('p');
+            p.className = 'ad-text';
+            p.textContent = item;
 
-        const p = document.createElement('p');
-        p.className = 'ad-text';
-        p.textContent = text;
+            card.appendChild(copyBtn);
+            card.appendChild(p);
+        } else {
+            // TikTok structured ad
+            card.classList.add('tiktok-card');
 
-        card.appendChild(copyBtn);
-        card.appendChild(p);
+            // Idea Section
+            const ideaTitle = document.createElement('h3');
+            ideaTitle.textContent = '🎥 فكرة الفيديو:';
+            const ideaText = document.createElement('p');
+            ideaText.textContent = item.idea;
+            const ideaCopy = createCopyButton(item.idea);
+
+            // Directing Section
+            const directTitle = document.createElement('h3');
+            directTitle.textContent = '🎬 الإخراج:';
+            const directText = document.createElement('p');
+            directText.textContent = item.directing;
+            const directCopy = createCopyButton(item.directing);
+
+            // Prompt Section
+            const promptTitle = document.createElement('h3');
+            promptTitle.textContent = '🤖 Nano Banana Prompt:';
+            const promptText = document.createElement('p');
+            promptText.className = 'prompt-text';
+            promptText.textContent = item.prompt;
+            const promptCopy = createCopyButton(item.prompt);
+
+            card.appendChild(ideaTitle);
+            card.appendChild(ideaText);
+            card.appendChild(ideaCopy);
+
+            card.appendChild(document.createElement('hr'));
+
+            card.appendChild(directTitle);
+            card.appendChild(directText);
+            card.appendChild(directCopy);
+
+            card.appendChild(document.createElement('hr'));
+
+            card.appendChild(promptTitle);
+            card.appendChild(promptText);
+            card.appendChild(promptCopy);
+        }
+
         container.appendChild(card);
     });
 
@@ -121,6 +164,20 @@ if (settingsBtn) settingsBtn.style.display = 'none';
 
 const modal = document.getElementById('settings-modal');
 if (modal) modal.remove();
+
+// Helper function for copy button
+function createCopyButton(text) {
+    const btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.textContent = 'نسخ';
+    btn.onclick = () => {
+        navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = 'تم!';
+            setTimeout(() => btn.textContent = 'نسخ', 1500);
+        });
+    };
+    return btn;
+}
 
 // Start
 init();

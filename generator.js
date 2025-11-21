@@ -8,6 +8,7 @@ const DB_PATH = path.join(__dirname, 'ads_history.db');
 const TEXT_FILE = path.join(__dirname, 'text.txt');
 const ADS_X_FILE = path.join(__dirname, 'ads_x.json');
 const ADS_IG_FILE = path.join(__dirname, 'ads_ig.json');
+const ADS_TIKTOK_FILE = path.join(__dirname, 'ads_tiktok.json');
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
 const MODEL_ID = "google/gemini-2.0-flash-exp:free"; // Or any other model
 
@@ -50,7 +51,8 @@ function saveAdsToDB(ads, platform) {
     const stmt = db.prepare("INSERT INTO ads (platform, content, date) VALUES (?, ?, ?)");
 
     ads.forEach(ad => {
-        stmt.run(platform, ad, today);
+        const contentToSave = typeof ad === 'string' ? ad : JSON.stringify(ad);
+        stmt.run(platform, contentToSave, today);
     });
 
     stmt.finalize();
@@ -87,6 +89,7 @@ async function generateAds() {
     المطلوب:
     1. قائمة بـ 10 إعلانات قصيرة (تغريدات) لمنصة X.
     2. قائمة بـ 10 إعلانات جذابة لمنصة Instagram.
+    3. قائمة بـ 5 أفكار فيديوهات لمنصة TikTok.
     
     الشروط:
     - **يجب ذكر اسم التطبيق "تكلفة" في جميع الإعلانات.**
@@ -96,16 +99,28 @@ async function generateAds() {
     - ركز على الفوائد (زيادة المبيعات، الوصول للعملاء، السهولة).
     - أضف إيموجي وهاشتاقات مناسبة أخرى.
     
+    بالنسبة لـ TikTok، كل عنصر يجب أن يحتوي على:
+    - idea: فكرة الفيديو (السيناريو).
+    - directing: توجيهات للإخراج والتصوير.
+    - prompt: وصف دقيق (Prompt) لتوليد صورة مصغرة أو مشهد باستخدام Nano Banana.
+
     CRITICAL: Return ONLY valid JSON. Do not include markdown formatting like \`\`\`json.
     Format:
     {
         "x_ads": [
             "نص الإعلان الأول هنا...",
-            "نص الإعلان الثاني هنا...",
             ...
         ],
         "ig_ads": [
             "نص إعلان انستقرام الأول...",
+            ...
+        ],
+        "tiktok_ads": [
+            {
+                "idea": "فكرة الفيديو...",
+                "directing": "طريقة التصوير...",
+                "prompt": "وصف الصورة..."
+            },
             ...
         ]
     }
@@ -141,11 +156,13 @@ async function generateAds() {
         // Save to Files
         fs.writeFileSync(ADS_X_FILE, JSON.stringify(adsData.x_ads, null, 2));
         fs.writeFileSync(ADS_IG_FILE, JSON.stringify(adsData.ig_ads, null, 2));
+        fs.writeFileSync(ADS_TIKTOK_FILE, JSON.stringify(adsData.tiktok_ads, null, 2));
         console.log("Saved ads to JSON files.");
 
         // Save to DB
         saveAdsToDB(adsData.x_ads, 'x');
         saveAdsToDB(adsData.ig_ads, 'ig');
+        saveAdsToDB(adsData.tiktok_ads, 'tiktok');
         console.log("Saved ads to SQLite database.");
 
     } catch (error) {
