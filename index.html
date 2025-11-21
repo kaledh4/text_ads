@@ -3,8 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إعلانات يومية لتطبيقك</title>
     <meta name="description" content="ثمانية إعلانات عربية يومية لتغريدات X وأربعة إعلانات إنستقرام مجانية تمامًا.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>إعلانات يومية لتطبيقك</h1>
+        </div>
+        <p>اختر ما يناسبك وانسخه مباشرةً لتغريدة أو منشور إنستقرام</p>
+    </header>
+
+    <section id="tabs">
+        <button class="tab active" data-target="x">إعلانات X (Twitter)</button>
+        <button class="tab" data-target="ig">إعلانات إنستقرام</button>
+    </section>
+
+    <main id="ad-container"></main>
+
+    <footer>
+        <p>مُصمم بـ <a href="https://github.com/kaledh4/text_ads" target="_blank">GitHub Pages</a> – مجاني تمامًا</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 
 </html>
