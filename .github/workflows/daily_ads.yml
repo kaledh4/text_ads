@@ -34,7 +34,7 @@ jobs:
       run: |
         git config --global user.name 'GitHub Actions Bot'
         git config --global user.email 'actions@github.com'
-        git add ads_x.json ads_ig.json ads_history.db
+        git add ads_x.json ads_ig.json ads_tiktok.json ads_history.db
         # Check if there are changes to commit
         if git diff --staged --quiet; then
           echo "No changes to commit"
