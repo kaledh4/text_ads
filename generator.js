@@ -154,15 +154,15 @@ async function generateAds() {
         const adsData = JSON.parse(content);
 
         // Save to Files
-        fs.writeFileSync(ADS_X_FILE, JSON.stringify(adsData.x_ads, null, 2));
-        fs.writeFileSync(ADS_IG_FILE, JSON.stringify(adsData.ig_ads, null, 2));
-        fs.writeFileSync(ADS_TIKTOK_FILE, JSON.stringify(adsData.tiktok_ads, null, 2));
+        fs.writeFileSync(ADS_X_FILE, JSON.stringify(adsData.x_ads || [], null, 2));
+        fs.writeFileSync(ADS_IG_FILE, JSON.stringify(adsData.ig_ads || [], null, 2));
+        fs.writeFileSync(ADS_TIKTOK_FILE, JSON.stringify(adsData.tiktok_ads || [], null, 2));
         console.log("Saved ads to JSON files.");
 
         // Save to DB
-        saveAdsToDB(adsData.x_ads, 'x');
-        saveAdsToDB(adsData.ig_ads, 'ig');
-        saveAdsToDB(adsData.tiktok_ads, 'tiktok');
+        saveAdsToDB(adsData.x_ads || [], 'x');
+        saveAdsToDB(adsData.ig_ads || [], 'ig');
+        saveAdsToDB(adsData.tiktok_ads || [], 'tiktok');
         console.log("Saved ads to SQLite database.");
 
     } catch (error) {
