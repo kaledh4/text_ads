@@ -29,16 +29,30 @@ async function loadAds(type) {
     }
 }
 
+/* ---------- State ---------- */
+let currentAds = [];
+let currentIndex = 0;
+const ADS_PER_PAGE = 4;
+
 /* ---------- Rendering ---------- */
 function renderAds(ads) {
+    currentAds = ads || [];
+    currentIndex = 0;
+    updateAdDisplay();
+}
+
+function updateAdDisplay() {
     container.innerHTML = '';
 
-    if (!ads || ads.length === 0) {
+    if (currentAds.length === 0) {
         container.innerHTML = '<p style="text-align:center; opacity:0.7">لا توجد إعلانات متاحة.</p>';
         return;
     }
 
-    ads.forEach(text => {
+    // Slice the ads for the current view
+    const visibleAds = currentAds.slice(currentIndex, currentIndex + ADS_PER_PAGE);
+
+    visibleAds.forEach(text => {
         const card = document.createElement('div');
         card.className = 'ad-card';
 
@@ -60,6 +74,27 @@ function renderAds(ads) {
         card.appendChild(p);
         container.appendChild(card);
     });
+
+    // Add "Shuffle/Change" button if we have more ads
+    if (currentAds.length > ADS_PER_PAGE) {
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'actions-container';
+
+        const shuffleBtn = document.createElement('button');
+        shuffleBtn.className = 'action-btn shuffle-btn';
+        shuffleBtn.innerHTML = '🔄 تغيير الإعلانات (لم يعجبني)';
+        shuffleBtn.onclick = () => {
+            // Move to next batch, or loop back to start
+            currentIndex += ADS_PER_PAGE;
+            if (currentIndex >= currentAds.length) {
+                currentIndex = 0;
+            }
+            updateAdDisplay();
+        };
+
+        actionsDiv.appendChild(shuffleBtn);
+        container.appendChild(actionsDiv);
+    }
 }
 
 function renderLoading() {
