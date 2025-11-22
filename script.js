@@ -15,6 +15,11 @@ const logo = new Image();
 logo.crossOrigin = "anonymous";
 logo.src = 'taklifaplatform.png';
 
+// Image Generation Style Prompt
+// This prompt defines the visual style of the generated images.
+// It is combined with the ad text to create the final prompt.
+const IMAGE_STYLE = "Professional corporate advertisement, modern minimalist design, high quality business photography, bright natural lighting, 4k resolution, photorealistic, elegant";
+
 /* ---------- Initialization ---------- */
 function init() {
     // Default to X ads
@@ -206,7 +211,8 @@ async function generateAdImage(text) {
 
     // Prepare Prompt (Translate roughly or just use text + keywords)
     // Using Pollinations.ai
-    const prompt = encodeURIComponent(`Professional business advertisement, modern style, high quality, 4k, ${text}`);
+    // We combine the global style with the specific ad text
+    const prompt = encodeURIComponent(`${IMAGE_STYLE}, ${text}`);
     const imageUrl = `https://image.pollinations.ai/prompt/${prompt}?width=1080&height=1080&nologo=true`;
 
     try {
