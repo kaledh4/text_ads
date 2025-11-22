@@ -40,8 +40,8 @@ async function loadAds(type) {
     container.classList.remove('theme-x', 'theme-ig', 'theme-tiktok');
     container.classList.add(`theme-${type}`);
 
-    // Reset Daily Image Section
-    resetDailyImageSection();
+    // Load Daily Image for this type (if exists)
+    loadDailyImageFromStorage(type);
 
     let fileName;
     if (type === 'x') fileName = 'ads_x.json';
@@ -59,6 +59,10 @@ async function loadAds(type) {
         // Setup Daily Image Button
         if (type === 'x' || type === 'ig') {
             document.getElementById('daily-image-section').style.display = 'block';
+
+            // Only attach listener if not already generated/loaded to avoid double binding or logic errors
+            // But we need to update the 'ads' reference for the generator
+            // So we just re-assign the onclick
             generateDailyBtn.onclick = () => generateDailyImage(ads, type);
         } else {
             document.getElementById('daily-image-section').style.display = 'none';
@@ -106,7 +110,6 @@ function updateAdDisplay(type) {
 
             card.appendChild(copyBtn);
             card.appendChild(p);
-            // Removed per-ad generate button
 
         } else {
             // TikTok structured ad
@@ -116,7 +119,7 @@ function updateAdDisplay(type) {
                 // New JSON format for Video AI
                 const title = document.createElement('h3');
                 title.textContent = '🎥 AI Video Prompt (JSON)';
-                // ... (TikTok logic remains same) ...
+
                 const desc = document.createElement('p');
                 desc.style.fontSize = '0.9em';
                 desc.style.color = '#555';
@@ -151,10 +154,31 @@ function updateAdDisplay(type) {
                 const ideaText = document.createElement('p');
                 ideaText.textContent = item.idea;
                 const ideaCopy = createCopyButton(item.idea);
-                // ... (rest of old tiktok format) ...
+
+                const directTitle = document.createElement('h3');
+                directTitle.textContent = '🎬 الإخراج:';
+                const directText = document.createElement('p');
+                directText.textContent = item.directing;
+                const directCopy = createCopyButton(item.directing);
+
+                const promptTitle = document.createElement('h3');
+                promptTitle.textContent = '🤖 Nano Banana Prompt:';
+                const promptText = document.createElement('p');
+                promptText.className = 'prompt-text';
+                promptText.textContent = item.prompt;
+                const promptCopy = createCopyButton(item.prompt);
+
                 card.appendChild(ideaTitle);
                 card.appendChild(ideaText);
                 card.appendChild(ideaCopy);
+                card.appendChild(document.createElement('hr'));
+                card.appendChild(directTitle);
+                card.appendChild(directText);
+                card.appendChild(directCopy);
+                card.appendChild(document.createElement('hr'));
+                card.appendChild(promptTitle);
+                card.appendChild(promptText);
+                card.appendChild(promptCopy);
             }
         }
 
@@ -162,13 +186,14 @@ function updateAdDisplay(type) {
     });
 
     // Add "Shuffle/Change" button if we have more ads
+    // Only show if there are actually more ads to show
     if (currentAds.length > ADS_PER_PAGE) {
         const actionsDiv = document.createElement('div');
         actionsDiv.className = 'actions-container';
 
         const shuffleBtn = document.createElement('button');
         shuffleBtn.className = 'action-btn shuffle-btn';
-        shuffleBtn.innerHTML = '🔄 تغيير الإعلانات (لم يعجبني)';
+        shuffleBtn.innerHTML = '🔄 عرض إعلانات أخرى';
         shuffleBtn.onclick = () => {
             currentIndex += ADS_PER_PAGE;
             if (currentIndex >= currentAds.length) {
@@ -190,10 +215,62 @@ function renderLoading() {
     `;
 }
 
+/* ---------- Storage Logic ---------- */
+function loadDailyImageFromStorage(type) {
+    const today = new Date().toISOString().split('T')[0];
+    const key = `daily_image_${type}_${today}`;
+    const savedImage = localStorage.getItem(key);
+
+    if (savedImage) {
+        // Render saved image
+        const imgElement = document.createElement('img');
+        imgElement.src = savedImage;
+        imgElement.alt = "Daily Generated Ad (Saved)";
+
+        dailyImageWrapper.innerHTML = '';
+        dailyImageWrapper.appendChild(imgElement);
+
+        generateDailyBtn.textContent = '🔄 توليد صورة جديدة (استبدال)';
+        generateDailyBtn.disabled = false;
+
+        // Add Download Button
+        const downloadSavedBtn = document.createElement('button');
+        downloadSavedBtn.className = 'action-btn download-saved-btn';
+        downloadSavedBtn.style.marginTop = '10px';
+        downloadSavedBtn.style.fontSize = '0.9rem';
+        downloadSavedBtn.innerHTML = '📥 تحميل الصورة المحفوظة';
+        downloadSavedBtn.onclick = () => {
+            const link = document.createElement('a');
+            link.download = `taklifa-daily-${type}-${today}.png`;
+            link.href = savedImage;
+            link.click();
+        };
+
+        // Clear previous buttons if any
+        const existingDownload = dailyImageWrapper.parentElement.querySelector('.download-saved-btn');
+        if (existingDownload) existingDownload.remove();
+
+        dailyImageWrapper.parentElement.appendChild(downloadSavedBtn);
+
+    } else {
+        resetDailyImageSection();
+    }
+}
+
+function saveDailyImageToStorage(type, dataUrl) {
+    const today = new Date().toISOString().split('T')[0];
+    const key = `daily_image_${type}_${today}`;
+    localStorage.setItem(key, dataUrl);
+}
+
 function resetDailyImageSection() {
     dailyImageWrapper.innerHTML = '<div class="placeholder-image"><span>اضغط لتوليد صورة اليوم</span></div>';
     generateDailyBtn.disabled = false;
     generateDailyBtn.textContent = '✨ توليد صورة حصرية لليوم';
+
+    // Remove download button if exists
+    const existingDownload = dailyImageWrapper.parentElement.querySelector('.download-saved-btn');
+    if (existingDownload) existingDownload.remove();
 }
 
 /* ---------- Daily Image Generation Logic ---------- */
@@ -203,13 +280,13 @@ async function generateDailyImage(ads, type) {
     generateDailyBtn.disabled = true;
     generateDailyBtn.textContent = '⏳ جاري المعالجة...';
 
-    // Construct Prompt
-    // We combine IMAGE_STYLE + BRAND_CONTEXT + A random seed based on date/type to ensure variety but consistency
-    const dateSeed = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-    const randomSeed = Math.floor(Math.random() * 1000); // Add randomness for "Retry" feel if they click again (actually we reset on loadAds, so this button click is unique)
+    // Remove download button if exists during generation
+    const existingDownload = dailyImageWrapper.parentElement.querySelector('.download-saved-btn');
+    if (existingDownload) existingDownload.remove();
 
-    // We can try to extract keywords from the first ad if it's text, but BRAND_CONTEXT is safer for quality.
-    // Let's add a "vibe" keyword based on the type
+    // Construct Prompt
+    const dateSeed = new Date().toISOString().split('T')[0];
+    const randomSeed = Math.floor(Math.random() * 1000);
     const platformVibe = type === 'x' ? "minimalist, twitter style" : "aesthetic, instagram style, vibrant";
 
     const prompt = encodeURIComponent(`${IMAGE_STYLE}, ${BRAND_CONTEXT}, ${platformVibe}`);
@@ -247,6 +324,9 @@ async function generateDailyImage(ads, type) {
         // Get Final Image Data
         const finalImageSrc = canvas.toDataURL('image/png');
 
+        // Save to Storage
+        saveDailyImageToStorage(type, finalImageSrc);
+
         // Update UI
         const finalImgElement = document.createElement('img');
         finalImgElement.src = finalImageSrc;
@@ -256,20 +336,22 @@ async function generateDailyImage(ads, type) {
         dailyImageWrapper.appendChild(finalImgElement);
 
         // Change button to Download
-        generateDailyBtn.textContent = '📥 حفظ الصورة';
+        generateDailyBtn.textContent = '🔄 توليد صورة جديدة (استبدال)';
         generateDailyBtn.disabled = false;
-        generateDailyBtn.onclick = () => {
+
+        // Add Download Button
+        const downloadSavedBtn = document.createElement('button');
+        downloadSavedBtn.className = 'action-btn download-saved-btn';
+        downloadSavedBtn.style.marginTop = '10px';
+        downloadSavedBtn.style.fontSize = '0.9rem';
+        downloadSavedBtn.innerHTML = '📥 حفظ الصورة';
+        downloadSavedBtn.onclick = () => {
             const link = document.createElement('a');
             link.download = `taklifa-daily-${type}-${dateSeed}.png`;
             link.href = finalImageSrc;
             link.click();
-
-            // Reset button after download to allow re-generation
-            setTimeout(() => {
-                generateDailyBtn.textContent = '🔄 توليد صورة أخرى';
-                generateDailyBtn.onclick = () => generateDailyImage(ads, type);
-            }, 2000);
         };
+        dailyImageWrapper.parentElement.appendChild(downloadSavedBtn);
 
     } catch (error) {
         console.error('Image Generation Error:', error);
@@ -318,4 +400,3 @@ function createCopyButton(text) {
 
 // Start
 init();
-
