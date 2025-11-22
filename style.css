@@ -214,10 +214,6 @@ header p {
     color: #fff;
 }
 
-.modal-actions button:hover {
-    transform: scale(1.05);
-}
-
 .note {
     font-size: 0.8rem;
     opacity: 0.6;
@@ -252,6 +248,7 @@ footer {
     margin-top: auto;
     font-size: 0.9rem;
     opacity: 0.7;
+    padding-bottom: 1rem;
 }
 
 footer a {
@@ -372,8 +369,6 @@ footer a:hover {
 }
 
 /* ---------- Themes ---------- */
-
-/* Twitter (X) Theme - Blue */
 .theme-x .copy-btn {
     background: #1DA1F2;
     color: #fff;
@@ -387,17 +382,14 @@ footer a:hover {
     border-right: 4px solid #1DA1F2;
 }
 
-/* Instagram Theme - Red/Orange (Default) */
 .theme-ig .copy-btn {
     background: #ff7e5f;
-    /* Default color */
 }
 
 .theme-ig .ad-card {
     border-right: 4px solid #ff7e5f;
 }
 
-/* TikTok Theme - White */
 .theme-tiktok .copy-btn {
     background: #ffffff;
     color: #000;
@@ -418,6 +410,81 @@ footer a:hover {
 
 .theme-tiktok .tiktok-card .prompt-text {
     color: #00ffea;
-    /* Cyan for prompt to stand out against dark bg */
     border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ---------- Image Generation Styles ---------- */
+.image-modal-content {
+    max-width: 500px;
+    width: 95%;
+    background: linear-gradient(145deg, #1a1a2e, #16213e);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.image-preview-container {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 1rem 0;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.action-btn.secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.action-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.generate-btn {
+    background: linear-gradient(90deg, #8e2de2, #4a00e0);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+    justify-content: center;
+}
+
+.generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.4);
+}
+
+/* ---------- Mobile Optimization ---------- */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .ad-card {
+        padding: 1.2rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+    }
 }

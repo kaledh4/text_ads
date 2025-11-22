@@ -40,6 +40,24 @@
         <p>تم التطوير بواسطة ABO_OMAR | يتم التحديث يومياً 🤖</p>
     </footer>
 
+    <!-- Hidden Canvas for Image Processing -->
+    <canvas id="canvas" width="1080" height="1080" style="display: none;"></canvas>
+
+    <!-- Image Generation Modal -->
+    <div id="image-modal" class="modal hidden">
+        <div class="modal-content image-modal-content">
+            <h2>🎨 صورتك جاهزة</h2>
+            <div class="image-preview-container">
+                <img id="generated-image" src="" alt="Generated Ad" />
+            </div>
+            <div class="modal-actions">
+                <button id="download-btn" class="action-btn">📥 حفظ الصورة</button>
+                <button id="close-image-modal" class="action-btn secondary">إغلاق</button>
+            </div>
+            <p class="note">تم دمج الشعار تلقائياً ✨</p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 
