@@ -243,6 +243,75 @@ header p {
     }
 }
 
+/* ---------- Daily Image Section ---------- */
+.daily-image-section {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.5s ease;
+}
+
+.daily-image-card {
+    background: linear-gradient(145deg, #1e1e2f, #252540);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.daily-image-header h2 {
+    margin: 0;
+    color: #a8ff78;
+    font-size: 1.4rem;
+}
+
+.daily-image-header p {
+    margin: 0.5rem 0 1rem 0;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.daily-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.daily-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: fadeIn 0.5s ease;
+}
+
+.placeholder-image {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.9rem;
+}
+
+.generate-daily-btn {
+    width: 100%;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    justify-content: center;
+    font-weight: bold;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+.generate-daily-btn:hover {
+    box-shadow: 0 0 20px rgba(0, 198, 255, 0.4);
+    transform: translateY(-2px);
+}
+
 /* ---------- Footer ---------- */
 footer {
     margin-top: auto;

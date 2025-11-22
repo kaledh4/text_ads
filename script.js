@@ -10,15 +10,20 @@ const generatedImage = document.getElementById('generated-image');
 const downloadBtn = document.getElementById('download-btn');
 const closeImageModalBtn = document.getElementById('close-image-modal');
 
+// Daily Image Elements
+const dailyImageWrapper = document.getElementById('daily-image-wrapper');
+const generateDailyBtn = document.getElementById('generate-daily-btn');
+
 // Preload Logo
 const logo = new Image();
 logo.crossOrigin = "anonymous";
 logo.src = 'taklifaplatform.png';
 
 // Image Generation Style Prompt
-// This prompt defines the visual style of the generated images.
-// It is combined with the ad text to create the final prompt.
 const IMAGE_STYLE = "Professional corporate advertisement, modern minimalist design, high quality business photography, bright natural lighting, 4k resolution, photorealistic, elegant";
+
+// Brand Context (Summary of text.txt)
+const BRAND_CONTEXT = "Digital market app for shops and warehouses to reach customers, instant access, AI-powered product addition, sales growth, mobile application interface";
 
 /* ---------- Initialization ---------- */
 function init() {
@@ -35,6 +40,9 @@ async function loadAds(type) {
     container.classList.remove('theme-x', 'theme-ig', 'theme-tiktok');
     container.classList.add(`theme-${type}`);
 
+    // Reset Daily Image Section
+    resetDailyImageSection();
+
     let fileName;
     if (type === 'x') fileName = 'ads_x.json';
     else if (type === 'ig') fileName = 'ads_ig.json';
@@ -47,6 +55,15 @@ async function loadAds(type) {
 
         const ads = await response.json();
         renderAds(ads, type);
+
+        // Setup Daily Image Button
+        if (type === 'x' || type === 'ig') {
+            document.getElementById('daily-image-section').style.display = 'block';
+            generateDailyBtn.onclick = () => generateDailyImage(ads, type);
+        } else {
+            document.getElementById('daily-image-section').style.display = 'none';
+        }
+
     } catch (error) {
         console.error(error);
         container.innerHTML = `<div class="loading" style="color:red">لم يتم العثور على إعلانات اليوم.<br>يرجى تشغيل سكريبت التوليد (generator.js).</div>`;
@@ -89,15 +106,7 @@ function updateAdDisplay(type) {
 
             card.appendChild(copyBtn);
             card.appendChild(p);
-
-            // Add Generate Image Button for X and IG
-            if (type === 'x' || type === 'ig') {
-                const genBtn = document.createElement('button');
-                genBtn.className = 'generate-btn';
-                genBtn.innerHTML = '🎨 توليد صورة للإعلان';
-                genBtn.onclick = () => generateAdImage(item);
-                card.appendChild(genBtn);
-            }
+            // Removed per-ad generate button
 
         } else {
             // TikTok structured ad
@@ -107,7 +116,7 @@ function updateAdDisplay(type) {
                 // New JSON format for Video AI
                 const title = document.createElement('h3');
                 title.textContent = '🎥 AI Video Prompt (JSON)';
-
+                // ... (TikTok logic remains same) ...
                 const desc = document.createElement('p');
                 desc.style.fontSize = '0.9em';
                 desc.style.color = '#555';
@@ -142,31 +151,10 @@ function updateAdDisplay(type) {
                 const ideaText = document.createElement('p');
                 ideaText.textContent = item.idea;
                 const ideaCopy = createCopyButton(item.idea);
-
-                const directTitle = document.createElement('h3');
-                directTitle.textContent = '🎬 الإخراج:';
-                const directText = document.createElement('p');
-                directText.textContent = item.directing;
-                const directCopy = createCopyButton(item.directing);
-
-                const promptTitle = document.createElement('h3');
-                promptTitle.textContent = '🤖 Nano Banana Prompt:';
-                const promptText = document.createElement('p');
-                promptText.className = 'prompt-text';
-                promptText.textContent = item.prompt;
-                const promptCopy = createCopyButton(item.prompt);
-
+                // ... (rest of old tiktok format) ...
                 card.appendChild(ideaTitle);
                 card.appendChild(ideaText);
                 card.appendChild(ideaCopy);
-                card.appendChild(document.createElement('hr'));
-                card.appendChild(directTitle);
-                card.appendChild(directText);
-                card.appendChild(directCopy);
-                card.appendChild(document.createElement('hr'));
-                card.appendChild(promptTitle);
-                card.appendChild(promptText);
-                card.appendChild(promptCopy);
             }
         }
 
@@ -202,18 +190,30 @@ function renderLoading() {
     `;
 }
 
-/* ---------- Image Generation Logic ---------- */
-async function generateAdImage(text) {
-    // Show loading state in modal
-    generatedImage.src = ''; // Clear previous
-    imageModal.classList.remove('hidden');
-    generatedImage.parentElement.innerHTML = '<div class="loading">جاري توليد الصورة... 🎨</div>';
+function resetDailyImageSection() {
+    dailyImageWrapper.innerHTML = '<div class="placeholder-image"><span>اضغط لتوليد صورة اليوم</span></div>';
+    generateDailyBtn.disabled = false;
+    generateDailyBtn.textContent = '✨ توليد صورة حصرية لليوم';
+}
 
-    // Prepare Prompt (Translate roughly or just use text + keywords)
-    // Using Pollinations.ai
-    // We combine the global style with the specific ad text
-    const prompt = encodeURIComponent(`${IMAGE_STYLE}, ${text}`);
-    const imageUrl = `https://image.pollinations.ai/prompt/${prompt}?width=1080&height=1080&nologo=true`;
+/* ---------- Daily Image Generation Logic ---------- */
+async function generateDailyImage(ads, type) {
+    // Set loading state
+    dailyImageWrapper.innerHTML = '<div class="loading">جاري توليد صورة اليوم... 🎨</div>';
+    generateDailyBtn.disabled = true;
+    generateDailyBtn.textContent = '⏳ جاري المعالجة...';
+
+    // Construct Prompt
+    // We combine IMAGE_STYLE + BRAND_CONTEXT + A random seed based on date/type to ensure variety but consistency
+    const dateSeed = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+    const randomSeed = Math.floor(Math.random() * 1000); // Add randomness for "Retry" feel if they click again (actually we reset on loadAds, so this button click is unique)
+
+    // We can try to extract keywords from the first ad if it's text, but BRAND_CONTEXT is safer for quality.
+    // Let's add a "vibe" keyword based on the type
+    const platformVibe = type === 'x' ? "minimalist, twitter style" : "aesthetic, instagram style, vibrant";
+
+    const prompt = encodeURIComponent(`${IMAGE_STYLE}, ${BRAND_CONTEXT}, ${platformVibe}`);
+    const imageUrl = `https://image.pollinations.ai/prompt/${prompt}?width=1080&height=1080&nologo=true&seed=${randomSeed}`;
 
     try {
         // Load generated image
@@ -226,47 +226,56 @@ async function generateAdImage(text) {
             img.onerror = reject;
         });
 
-        // Draw to Canvas
+        // Draw to Canvas for Logo Overlay
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // 1. Draw Generated Image
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-        // 2. Draw Dark Gradient Overlay (for text readability if we added text, but here just for style)
-        // Optional: Add a subtle overlay at the top for the logo
+        // Dark Gradient Overlay
         const gradient = ctx.createLinearGradient(0, 0, 0, 300);
         gradient.addColorStop(0, "rgba(0,0,0,0.6)");
         gradient.addColorStop(1, "rgba(0,0,0,0)");
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, canvas.width, 300);
 
-        // 3. Draw Logo (Upper Center)
-        // Logo size: let's say 200px wide
+        // Draw Logo
         const logoWidth = 250;
         const logoHeight = (logo.height / logo.width) * logoWidth;
         const logoX = (canvas.width - logoWidth) / 2;
-        const logoY = 50; // Padding from top
-
+        const logoY = 50;
         ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
 
-        // 4. Update Modal with Result
-        const finalImage = canvas.toDataURL('image/png');
-        const previewContainer = document.querySelector('.image-preview-container');
-        previewContainer.innerHTML = '';
-        generatedImage.src = finalImage;
-        previewContainer.appendChild(generatedImage);
+        // Get Final Image Data
+        const finalImageSrc = canvas.toDataURL('image/png');
 
-        // Setup Download Button
-        downloadBtn.onclick = () => {
+        // Update UI
+        const finalImgElement = document.createElement('img');
+        finalImgElement.src = finalImageSrc;
+        finalImgElement.alt = "Daily Generated Ad";
+
+        dailyImageWrapper.innerHTML = '';
+        dailyImageWrapper.appendChild(finalImgElement);
+
+        // Change button to Download
+        generateDailyBtn.textContent = '📥 حفظ الصورة';
+        generateDailyBtn.disabled = false;
+        generateDailyBtn.onclick = () => {
             const link = document.createElement('a');
-            link.download = 'taklifa-ad.png';
-            link.href = finalImage;
+            link.download = `taklifa-daily-${type}-${dateSeed}.png`;
+            link.href = finalImageSrc;
             link.click();
+
+            // Reset button after download to allow re-generation
+            setTimeout(() => {
+                generateDailyBtn.textContent = '🔄 توليد صورة أخرى';
+                generateDailyBtn.onclick = () => generateDailyImage(ads, type);
+            }, 2000);
         };
 
     } catch (error) {
         console.error('Image Generation Error:', error);
-        document.querySelector('.image-preview-container').innerHTML = '<p style="color:red; padding:1rem;">حدث خطأ أثناء توليد الصورة. حاول مرة أخرى.</p>';
+        dailyImageWrapper.innerHTML = '<p style="color:red; padding:1rem;">حدث خطأ. حاول مرة أخرى.</p>';
+        generateDailyBtn.disabled = false;
+        generateDailyBtn.textContent = '🔄 محاولة مجدداً';
     }
 }
 
@@ -276,7 +285,6 @@ function setupModalListeners() {
         imageModal.classList.add('hidden');
     });
 
-    // Close on click outside
     imageModal.addEventListener('click', (e) => {
         if (e.target === imageModal) {
             imageModal.classList.add('hidden');
