@@ -1,39 +1,39 @@
 [
   {
     "shot": {
-      "composition": "Full shot of the store owner holding a smartphone, close-up on the screen showcasing the Takلفة app.",
-      "camera_motion": "Smooth zoom in from a wide shot to a close-up focusing on the app interface.",
-      "frame_rate": "24fps",
-      "film_grain": "Low, clean look."
+      "composition": "Close-up of hands setting up a shop on the Takلفة app.",
+      "camera_motion": "Fast zoom to show the ease of the app.",
+      "frame_rate": "60fps",
+      "film_grain": "None"
     },
     "subject": {
-      "description": "A friendly and relatable Saudi store owner in his 30s, representing a typical small business owner.",
-      "wardrobe": "Casual Saudi attire - a thawb or a shirt and pants combo, reflecting a modern yet traditional look.",
-      "mic_position": "Wireless lavalier mic beneath the thawb/shirt."
+      "description": "A business owner showing on the screen to upload products with simple steps.",
+      "wardrobe": "Casual clothing that reflects day to day life",
+      "mic_position": "External mic"
     },
     "scene": {
-      "location": "Inside the store, at the counter, surrounded by products.",
-      "environment": "A well-lit, tidied local store, creating a welcoming vibe."
+      "location": "Day to day shop",
+      "environment": "Business is open, you can hear people outside and the regular sounds of a local shop"
     },
     "visual_details": [
-      "action 1: The owner is adding products to his store on Takلفة using his smartphone.",
-      "action 2: The screen shows the AI automatically filling product details upon photo upload.",
-      "action 3: The owner grins and nods, pleased with how easy it is. Cut to a sequence of customers entering the shop."
+      "action 1: Use the Takلفة app and take a picture of the product",
+      "action 2: Add a price.",
+      "action 3: Start receiving immediate orders and start making money!"
     ],
     "cinematography": {
-      "lighting": "Warm and inviting, using a mix of natural and artificial lights.",
-      "tone": "Upbeat and positive, reflecting ease and efficiency."
+      "lighting": "natural",
+      "tone": "Fast and informative"
     },
     "audio": {
-      "ambient": "Soft, realistic shop sounds - distant conversations, beeping of a cash register.",
+      "ambient": "Natural sound of a shop",
       "voice": {
-        "tone": "Enthusiastic and clear, with a slight Saudi accent.",
-        "style": "Informal, conversational.",
+        "tone": "Normal, helpful",
+        "style": "Simple",
         "talk": [
-          "Owner: \"تخيل سهولة إدارة متجرك عبر جوالك! #تكلفة سهّل علينا كل شي!\""
+          "Voice Over: Takلفة: صور، حدد السعر وابدأ البيع"
         ]
       },
-      "lyrics": "Upbeat Arabic pop music in the background, faded down to emphasize voiceover."
+      "lyrics": "Trending song about selling products fast"
     },
     "color_palette": [
       "#F2E7D5",
@@ -43,157 +43,155 @@
     ],
     "visual_rules": {
       "prohibited_elements": [
-        "Logos of competing apps",
-        "Overly cluttered shop background"
+        "No logo to competitor",
+        "No offensive content"
       ]
     }
   },
   {
     "shot": {
-      "composition": "Split screen: left side shows traditional marketing (flyers in the trash, billboards). Right side shows the Takلفة app on a phone.",
-      "camera_motion": "Smooth, slow pan across both sides of the split screen.",
-      "frame_rate": "24fps",
-      "film_grain": "None."
-    },
-    "subject": {
-      "description": "No specific subject on camera; focus remains on the visuals.",
-      "wardrobe": "N/A",
-      "mic_position": "N/A"
-    },
-    "scene": {
-      "location": "Various locations that represent traditional marketing frustration and the digital market.",
-      "environment": "Diverse, contrasting environments."
-    },
-    "visual_details": [
-      "action 1: Shots of discarded flyers blown in the wind.",
-      "action 2: A static billboard being overlooked by passing cars.",
-      "action 3: On the other side, quick cuts of the Takلفة app interface: orders coming in, maps highlighting business location, etc."
-    ],
-    "cinematography": {
-      "lighting": "Contrast the depressing, grey look of traditional side with the cleaner, more vibrant look of the digital/Takلفة side.",
-      "tone": "Dramatic contrast."
-    },
-    "audio": {
-      "ambient": "Environmental sounds of traffic, wind, etc., on the traditional side.",
-      "voice": {
-        "tone": "Authoritative and informative voiceover with a Saudi accent.",
-        "style": "Professional, serious at first then becoming more positive as it transitioned into Takلفة.",
-        "talk": [
-          "Voiceover: \"التسويق التقليدي يكلف ويضيع وقتك. ودّع الإعلانات القديمة وقدّم متجرك مع #تكلفة!\""
-        ]
-      },
-      "lyrics": "A rising music trend as the screen focuses on Takلفة"
-    },
-    "color_palette": [
-      "#333333",
-      "#FFFFFF",
-      "#E59866",
-      "#90A74A"
-    ],
-    "visual_rules": {
-      "prohibited_elements": [
-        "Showing competitor apps",
-        "Any offensive content."
-      ]
-    }
-  },
-  {
-    "shot": {
-      "composition": "Close-up of a smartphone screen, fingers typing and navigating within the Takلفة app.",
-      "camera_motion": "Close-up zooms and pans to highlight specific features.",
-      "frame_rate": "24fps",
-      "film_grain": "None."
-    },
-    "subject": {
-      "description": "Faceless hands represent any store owner.",
-      "wardrobe": "N/A",
-      "mic_position": "N/A"
-    },
-    "scene": {
-      "location": "On a neutral background",
-      "environment": "Minimalist and clean"
-    },
-    "visual_details": [
-      "action 1: A finger taps the ‘Add Product’ button.",
-      "action 2: Phone takes picture – AI generates title and description.",
-      "action 3: Finger inputs price, product is added, a map opens up showing the store location on the map."
-    ],
-    "cinematography": {
-      "lighting": "Bright, showcasing the screen clearly.",
-      "tone": "Informative and fast-paced."
-    },
-    "audio": {
-      "ambient": "N/A",
-      "voice": {
-        "tone": "A friendly and informative female voice, with a clear Saudi accent.",
-        "style": "Instructional and encouraging.",
-        "talk": [
-          "Voiceover: \"#تكلفة: صور منتجك، والذكاء الاصطناعي يكمل الباقي! سجل اليوم وزود مبيعاتك!\""
-        ]
-      },
-      "lyrics": "Catchy, trendy music playing in the background."
-    },
-    "color_palette": [
-      "#FFFFFF",
-      "#1E1E1E",
-      "#E59866",
-      "#90A74A"
-    ],
-    "visual_rules": {
-      "prohibited_elements": [
-        "Showing competitor logos",
-        "Confusing UI elements."
-      ]
-    }
-  },
-  {
-    "shot": {
-      "composition": "A series of quick cuts showcasing different local shop owners giving thumbs up while having their phone on their ear. Focus is on positivity and trustworthiness.",
-      "camera_motion": "Quick cuts for fast-paced and catchy visuals.",
-      "frame_rate": "24fps",
+      "composition": "owner looking at competitor, shaking his head. The owner then turns around opens up the Takلفة app and starts smiling.",
+      "camera_motion": "Panning to show the difference emotions after switching to Takلفة.",
+      "frame_rate": "60fps",
       "film_grain": "None"
     },
     "subject": {
-      "description": "Variety of different local store owners giving testimonials.",
-      "wardrobe": "Typical local clothing, casual but presentable.",
-      "mic_position": "Wireless lavalier mic hidden."
+      "description": "Saudi Shop Owner.",
+      "wardrobe": "Saudi everyday traditional clothing",
+      "mic_position": "External Mic"
     },
     "scene": {
-      "location": "Inside different types of local shops.",
-      "environment": "Varied, to give a good visual impact"
+      "location": "Everyday shop",
+      "environment": "Normal sound of every day business"
     },
     "visual_details": [
-      "action 1: Smiling shop owner giving a thumbs up.",
-      "action 2: Phone screen displays the #تكلفة logo",
-      "action 3: Owners have a positive look on their face, as if someone gave great news on the phone."
+      "action 1: The user is shaking his head looking to competition",
+      "action 2: The phone displays the Takلفة Logo",
+      "action 3: Start smiling knowing sales will increase"
     ],
     "cinematography": {
-      "lighting": "Warm and inviting, positive light.",
-      "tone": "Authentic, light."
+      "lighting": "Light in a commercial shop",
+      "tone": "Real life"
     },
     "audio": {
-      "ambient": "Everyday shop noises, faint conversations.",
+      "ambient": "Sound of light business",
       "voice": {
-        "tone": "Reliable and upbeat with Saudi accent.",
-        "style": "Fast and snappy remarks to cut short testimonial.",
+        "tone": "Helpful and greatful",
+        "style": "Grateful",
         "talk": [
-          "Shop owner 1: #تكلفة غير مبيعاتي للأفضل!",
-          "Shop owner 2: سهل وسريع! أنصح به!",
-          "Shop owner 3: زادت أرباحي بشكل ملحوظ!"
+          "Shop Owner: شكرا تكلفة, الان راح تزيد ارباحي"
         ]
       },
-      "lyrics": "Upbeat, trendy music throughout."
+      "lyrics": "Trending happy song"
     },
     "color_palette": [
-      "#FFFFFF",
-      "#1E1E1E",
+      "#F2E7D5",
+      "#4A4A4A",
       "#E59866",
       "#90A74A"
     ],
     "visual_rules": {
       "prohibited_elements": [
-        "Competitor logos",
-        "Any offensive or negative gestures."
+        "No logo to competitor",
+        "No offensive content"
+      ]
+    }
+  },
+  {
+    "shot": {
+      "composition": "Various clips that show different clips of different local Saudi shops.",
+      "camera_motion": "Fast transition between different cut scenes.",
+      "frame_rate": "60fps",
+      "film_grain": "None"
+    },
+    "subject": {
+      "description": "Showing how various stores are successful because of Takلفة.",
+      "wardrobe": "Everyday Saudi Business attire",
+      "mic_position": "Hidden external mic"
+    },
+    "scene": {
+      "location": "Various",
+      "environment": "Displaying different local businesses"
+    },
+    "visual_details": [
+      "action 1: Display how many customers are in the store",
+      "action 2: Show the shop owner checking his phone with the Takلفة app",
+      "action 3: Quick show of different success stories."
+    ],
+    "cinematography": {
+      "lighting": "Clear",
+      "tone": "Fast"
+    },
+    "audio": {
+      "ambient": "Natural ambience to the shop",
+      "voice": {
+        "tone": "Happy",
+        "style": "Greatful",
+        "talk": [
+          "Voice Over: كل المحلات التجارية تستخدم تكلفة و تزيد ارباحها"
+        ]
+      },
+      "lyrics": "Trending catchy song"
+    },
+    "color_palette": [
+      "#F2E7D5",
+      "#4A4A4A",
+      "#E59866",
+      "#90A74A"
+    ],
+    "visual_rules": {
+      "prohibited_elements": [
+        "Do not display any logos to competitors",
+        "No offensive content"
+      ]
+    }
+  },
+  {
+    "shot": {
+      "composition": "A customer is looking for a product, and finds the shop through the Takلفة App.",
+      "camera_motion": "Focus on the customer and shops displaying on the map.",
+      "frame_rate": "60fps",
+      "film_grain": "None"
+    },
+    "subject": {
+      "description": "Saudi Customer looking up shops in his area.",
+      "wardrobe": "Everyday Saudi clothing.",
+      "mic_position": "External mic"
+    },
+    "scene": {
+      "location": "Inside the car",
+      "environment": "Normal sound coming from inside a car"
+    },
+    "visual_details": [
+      "action 1: Looking up a shop for a quick stop.",
+      "action 2: Sees the local stores using the app.",
+      "action 3: Chooses the closest store and goes to shop."
+    ],
+    "cinematography": {
+      "lighting": "Light from the inside of the car",
+      "tone": "Normal"
+    },
+    "audio": {
+      "ambient": "Sounds of road and traffic.",
+      "voice": {
+        "tone": "Excited",
+        "style": "Surprised",
+        "talk": [
+          "Customer: واخيرا لقيت محل قريب مني. شكرا لبرنامج تكلفة"
+        ]
+      },
+      "lyrics": "Trending song to display happiness."
+    },
+    "color_palette": [
+      "#F2E7D5",
+      "#4A4A4A",
+      "#E59866",
+      "#90A74A"
+    ],
+    "visual_rules": {
+      "prohibited_elements": [
+        "No logos to competitors.",
+        "No offensive material."
       ]
     }
   }
