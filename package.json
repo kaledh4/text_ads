@@ -1,0 +1,19 @@
+{
+  "name": "videoads",
+  "version": "1.0.0",
+  "description": "موقع ثابت يُظهر 8 إعلانات عربية يومية لتغريدات X و4 إعلانات إنستقرام، مع زر نسخ جاهز. لا يحتاج إلى خادم، ويمكن استضافته مجانًا على **GitHub Pages**.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "node generator.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "js-yaml": "^4.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}

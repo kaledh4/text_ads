@@ -1,0 +1,64 @@
+platform_info:
+  name: تكلفة
+  type: intermediate_platform
+  version: "1.0"
+  last_updated: "2025-11-29"
+  description: "منصة وسيطة تربط أصحاب الأعمال بالعملاء المحتملين"
+
+target_audience:
+  primary:
+    - "أصحاب المحلات التجارية"
+    - "مديرو المصانع الصغيرة"
+    - "أصحاب المستودعات"
+    - "مقدمو الخدمات"
+  secondary:
+    - "المستهلكون الباحثون عن منتجات محلية"
+    - "الشركات الباحثون عن موردين"
+    - "الأفراد الباحثون عن خدمات"
+
+ad_campaigns:
+  x_platform:
+    file: "ads_x.json"
+    daily_count: 8
+    format: "text_with_hashtags"
+    tone: "casual_direct"
+    target: "business_owners"
+  
+  instagram:
+    file: "ads_ig.json"
+    daily_count: 4
+    format: "emoji_rich_text"
+    tone: "engaging_visual"
+    target: "young_entrepreneurs"
+  
+  tiktok:
+    file: "ads_tiktok.json"
+    daily_count: 4
+    format: "video_scenarios"
+    tone: "entertaining_educational"
+    target: "general_audience"
+
+key_features_promoted:
+  - "ai_product_creation"
+  - "geographic_location"
+  - "easy_registration"
+  - "service_provider_support"
+  - "direct_customer_connection"
+
+hashtags:
+  primary:
+    - "#تكلفة"
+  secondary:
+    - "#تسويق_رقمي"
+    - "#تجارة_الكترونية"
+    - "#متاجر_السعودية"
+  contextual:
+    - "#زيادة_المبيعات"
+    - "#تسويق_المتاجر"
+    - "#ريادة_الأعمال"
+
+performance_tracking:
+  history_file: "ads_history.db"
+  tracking_method: "localStorage"
+  rotation_frequency: "daily"
+  recommendation: "keep_history_for_analysis"
