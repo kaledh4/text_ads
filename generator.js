@@ -15,14 +15,15 @@ const API_URL = "https://openrouter.ai/api/v1/chat/completions";
 const API_KEY = process.env.OPENROUTER_API_KEY; // User requested GitHub Secret
 
 // Model
-const MODEL = "x-ai/grok-2-1212"; // Using a stable Grok ID. 'x-ai/grok-4.1-fast:free' is not a standard stable ID yet, defaulting to a known good Grok model or similar high quality one. 
-// actually, let's try to use the one user asked for if it works, but fallback to a known one. 
-// User asked for: x-ai/grok-4.1-fast:free
-// I will use "x-ai/grok-2-1212" as it is the current high quality standard, or "google/gemini-2.0-flash-exp:free" if they want free. 
-// However, to be safe and professional as requested, I will use "x-ai/grok-2-1212" which is excellent.
-// If the user *really* wants the free one, they might be referring to a specific experimental model. 
-// Let's stick to the user's request string but allow fallback.
-const PRIMARY_MODEL = "x-ai/grok-2-1212";
+// User confirmed: x-ai/grok-4.1-fast:free exists and is free.
+const PRIMARY_MODEL = "x-ai/grok-4.1-fast:free";
+
+const MODELS_TO_TRY = [
+    "x-ai/grok-4.1-fast:free", // Primary free model
+    "x-ai/grok-2-1212", // Fallback standard
+    "google/gemini-2.0-flash-exp:free", // Free fallback
+    "meta-llama/llama-3.3-70b-instruct:free" // Another free fallback
+];
 
 // CREATIVE PROMPT VARIATIONS
 const PROMPT_VARIATIONS = [
