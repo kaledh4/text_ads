@@ -199,6 +199,9 @@ function renderAds(ads, type) {
 
         if (type === 'tiktok') {
             // Handle TikTok ads (complex JSON objects)
+            const ordinals = ['الاول', 'الثاني', 'الثالث', 'الرابع'];
+            const ordinal = ordinals[index] || (index + 1);
+
             let displayText;
             let copyText;
 
@@ -213,8 +216,7 @@ function renderAds(ads, type) {
 
             adCard.innerHTML = `
                 <div class="ad-header">
-                    <span class="platform-icon">🎵</span>
-                    <h3>إعلان تيك توك ${index + 1}</h3>
+                    <h3>الاعلان ${ordinal} 🎥</h3>
                 </div>
                 <div class="ad-content">
                     <pre style="white-space: pre-wrap; font-family: 'Cairo', sans-serif; background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left;">${displayText}</pre>
@@ -234,10 +236,12 @@ function renderAds(ads, type) {
             });
         } else {
             // Handle X and Instagram ads
+            const ordinals = ['الاول', 'الثاني', 'الثالث', 'الرابع'];
+            const ordinal = ordinals[index] || (index + 1);
+
             adCard.innerHTML = `
                 <div class="ad-header">
-                    <span class="platform-icon">${type === 'x' ? '🐦' : '📸'}</span>
-                    <h3>${type === 'x' ? 'منصة X' : 'إنستقرام'} - إعلان ${index + 1}</h3>
+                    <h3>الاعلان ${ordinal} ${type === 'x' ? '🐦' : '📸'}</h3>
                 </div>
                 <div class="ad-content">
                     <p>${ad}</p>
