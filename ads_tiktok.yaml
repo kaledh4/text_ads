@@ -1,55 +1,52 @@
-- City: "الرياض"
-  Prompt: "Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Riyadh. Feature its most iconic landmarks like the Kingdom Centre Tower, small-scale modern architecture, and lush miniature greenery. A bold 3D \"Taklifa App\" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.\n"
+- City: الرياض
+  Prompt: Create a hyper-realistic image of a human hand holding a miniature display platform showcasing the Taklifa App interface with stores section featuring AI-generated products like building materials, services cards on a map, Riyadh skyline with Kingdom Centre tower and modern construction sites in the background, vibrant Saudi colors, dynamic lighting, high detail, photorealistic.
   KeyMessages:
-    - "حوّل أعمالك إلى تكلفة يخدمك"
-    - "وفر 70% من وقتك مع الذكاء الاصطناعي"
-    - "خدماتك ومتجرك على الخريطة"
-    - "آلاف التجار يثقون بتكلفة"
+    - 'وفر 70% وقت برفع AI في المتاجر #تكلفة'
+    - بطاقات خدمات احترافية على الخريطة
+    - نمو أعمالك بنسبة 40% بتكلفة أقل
+    - سجل مجاناً وابنِ إمبراطوريتك!
   Hashtags:
-    - "تكلفة"
-    - "الرياض"
-    - "ذكاء_اصطناعي"
-    - "توفير_وقت"
-    - "تجارة_الكترونية"
-
-- City: "جدة"
-  Prompt: "Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Jeddah. Feature its most iconic landmarks like the King Fahd Fountain, the Corniche waterfront, and small-scale coastal architecture. A bold 3D \"Taklifa App\" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.\n"
+    - تكلفة
+    - ذكاء_اصطناعي
+    - متاجر_بناء
+    - خدمات_تشطيب
+    - الرياض
+- City: جدة
+  Prompt: 'Create a hyper-realistic image in isometric 3D style of the Taklifa App ecosystem: floating miniature stores with AI product uploads, services icons on a interactive map, Jeddah waterfront with Clock Royal Tower and Corniche in background, construction cranes, blue sea tones, sharp 3D rendering, high resolution, futuristic vibe.'
   KeyMessages:
-    - "متجرك على تكلفة = نجاح مضمون"
-    - "رفع المنتجات بالذكاء الاصطناعي"
-    - "عملاء أكثر بتكلفة أقل"
-    - "قصص نجاح حقيقية من جدة"
+    - من صورة إلى مبيعات فورية بالـAI
+    - اجذب عملاء عبر خريطة الخدمات
+    - 'قيمة هائلة تفوق التكلفة #تكلفة'
+    - ابدأ رحلتك اليوم سجل مجاناً!
   Hashtags:
-    - "تكلفة"
-    - "جدة"
-    - "متاجر_الكترونية"
-    - "نجاح_تجاري"
-    - "البحر_الأحمر"
-
-- City: "الدمام"
-  Prompt: "Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Dammam. Feature its most iconic landmarks, industrial port structures, and small-scale modern architecture. A bold 3D \"Taklifa App\" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.\n"
+    - تكلفة
+    - قسم_المتاجر
+    - قسم_الخدمات
+    - جدة
+    - نمو_أعمال
+- City: الدمام
+  Prompt: Create a hyper-realistic image of a human hand holding a miniature display platform of Taklifa App highlighting AI product generation from photos in stores, services marketplace with map pins, Dammam skyline with Al Khobar Corniche bridges and oil rigs in distance, sandy desert tones, detailed textures, ultra-realistic.
   KeyMessages:
-    - "خدمات البناء على الخريطة"
-    - "تكامل كامل بين المتاجر والخدمات"
-    - "وصول فوري لعملائك"
-    - "نمو أعمالك في الشرقية"
+    - توفير 50% تكاليف التسويق في الخدمات
+    - متاجر ذكية بالذكاء الاصطناعي
+    - 'تكامل يعزز تدفقك النقدي #تكلفة'
+    - سجل مجاناً وتميز في السوق!
   Hashtags:
-    - "تكلفة"
-    - "الدمام"
-    - "خدمات_بناء"
-    - "مواد_بناء"
-    - "المنطقة_الشرقية"
-
-- City: "مكة"
-  Prompt: "Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Makkah. Feature its most iconic landmarks, the Clock Tower, mountainous terrain, and respectful small-scale architecture. A bold 3D \"Taklifa App\" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.\n"
+    - تكلفة
+    - توفير_تكاليف
+    - ذكاء_اصطناعي
+    - الدمام
+    - بناء_سعودي
+- City: أبها
+  Prompt: 'Create a hyper-realistic image in isometric 3D style showing Taklifa App''s stores and services integrated: 3D models of products auto-generated by AI, service providers on mountainous map, Abha green mountains, cable cars, traditional Asir houses with modern builds, earthy greens and blues, precise isometric perspective, cinematic lighting.'
   KeyMessages:
-    - "خدم ضيوف الرحمن بكفاءة"
-    - "منتجات وخدمات موثوقة"
-    - "نمو تجارتك في موسم الحج"
-    - "تكلفة يسهل عملك"
+    - 'بنِ هويتك التجارية بكفاءة #تكلفة'
+    - رفع منتجات سهل بالـAI
+    - طلبات فورية للخدمات عبر الخريطة
+    - سجل مجاناً واستمتع بالنمو!
   Hashtags:
-    - "تكلفة"
-    - "مكة_المكرمة"
-    - "خدمات_الحجاج"
-    - "موسم_الحج"
-    - "تجارة_مكة"
+    - تكلفة
+    - أبها
+    - متاجر
+    - خدمات_بناء
+    - قيمة_مالية
