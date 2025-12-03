@@ -219,7 +219,7 @@ function renderAds(ads, type) {
                     <h3>الاعلان ${ordinal} 🎥</h3>
                 </div>
                 <div class="ad-content">
-                    <pre style="white-space: pre-wrap; font-family: 'Cairo', sans-serif; background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left;">${displayText}</pre>
+                    <pre>${displayText}</pre>
                 </div>
                 <div class="ad-actions">
                     <button class="action-btn copy-btn-${index}" data-text="${encodeURIComponent(copyText)}">📋 نسخ</button>

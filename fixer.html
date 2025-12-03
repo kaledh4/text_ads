@@ -7,140 +7,15 @@
     <title>مصحح نصوص الإعلانات - تكلفة</title>
     <script src="js-yaml.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #2563eb;
-            --bg: #0f172a;
-            --surface: #1e293b;
-            --text: #f8fafc;
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1000px;
-            width: 100%;
-            background: var(--surface);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #60a5fa;
-        }
-
-        .controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        label {
-            font-weight: bold;
-            color: #94a3b8;
-        }
-
-        select,
-        input[type="file"],
-        input[type="text"] {
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #475569;
-            background: #334155;
-            color: white;
-            font-family: inherit;
-        }
-
-        .canvas-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            background: #000;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border: 2px dashed #475569;
-            min-height: 400px;
-            align-items: center;
-        }
-
-        canvas {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .actions {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        button {
-            padding: 12px 24px;
-            border-radius: 8px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1d4ed8;
-        }
-
-        .btn-secondary {
-            background: #475569;
-            color: white;
-        }
-
-        .instructions {
-            background: rgba(37, 99, 235, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(37, 99, 235, 0.2);
-        }
-
-        .custom-text-area {
-            grid-column: 1 / -1;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>🛠️ مصحح نصوص الإعلانات</h1>
+    <div class="fixer-container">
+        <header>
+            <h1>🛠️ مصحح نصوص الإعلانات</h1>
+        </header>
 
         <div class="instructions">
             <p><strong>كيف يعمل؟</strong></p>
@@ -152,7 +27,7 @@
             </ol>
         </div>
 
-        <div class="controls">
+        <div class="fixer-controls">
             <div class="control-group">
                 <label>1. اختر الصورة</label>
                 <input type="file" id="imageInput" accept="image/*">
@@ -184,7 +59,7 @@
             <canvas id="canvas" style="display: none;"></canvas>
         </div>
 
-        <div class="actions">
+        <div class="fixer-actions">
             <button id="downloadBtn" class="btn-primary" disabled>📥 تحميل الصورة المعدلة</button>
         </div>
     </div>
