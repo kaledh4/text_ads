@@ -4,271 +4,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مصحح نصوص الإعلانات - تكلفة</title>
-    <script src="js-yaml.min.js"></script>
+    <title>محرر إعلانات تكلفة - 3D Isometric Fixer</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="fixer-container">
-        <header>
-            <h1>🛠️ مصحح نصوص الإعلانات</h1>
-        </header>
+    <!-- Control Panel -->
+    <div class="control-panel">
+        <h2>🛠️ محرر الإعلانات</h2>
 
-        <div class="instructions">
-            <p><strong>كيف يعمل؟</strong></p>
-            <ol>
-                <li>انسخ الـ Prompt (الخالي من النصوص) من الصفحة الرئيسية وولد الصورة.</li>
-                <li>ارفع الصورة هنا.</li>
-                <li>اختر المدينة لإضافة النصوص الرسمية، أو اكتب نصوصك الخاصة.</li>
-                <li>حمل الصورة النهائية!</li>
-            </ol>
+        <div class="file-upload">
+            <label for="imageInput">📂 رفع صورة (Background)</label>
+            <input type="file" id="imageInput" accept="image/*">
         </div>
 
-        <div class="fixer-controls">
-            <div class="control-group">
-                <label>1. اختر الصورة</label>
-                <input type="file" id="imageInput" accept="image/*">
-            </div>
-            <div class="control-group">
-                <label>2. اختر المدينة (للنصوص الجاهزة)</label>
-                <select id="citySelect">
-                    <option value="">-- اختر المدينة --</option>
-                </select>
-            </div>
-
-            <div class="custom-text-area">
-                <label style="display:block; margin-bottom:10px;">أو خصص النصوص يدوياً:</label>
-                <div class="control-group" style="margin-bottom:10px;">
-                    <label>العنوان الرئيسي:</label>
-                    <input type="text" id="customTitle" placeholder="مثلاً: تطبيق تكلفة">
-                </div>
-                <div class="control-group">
-                    <label>الرسائل (افصل بينها بفاصلة):</label>
-                    <input type="text" id="customMessages" placeholder="رسالة 1, رسالة 2, رسالة 3">
-                </div>
-                <button id="applyCustomBtn" class="btn-secondary" style="margin-top:10px; width:100%;">تطبيق النصوص
-                    المخصصة</button>
-            </div>
+        <div class="input-group">
+            <label>1. العنوان الرئيسي (Top Center)</label>
+            <input type="text" id="input-1" value="مدينة الرياض" oninput="updateText(1)">
         </div>
 
-        <div class="canvas-container" id="canvasContainer">
-            <p style="color: #64748b">الرجاء رفع صورة للمعاينة</p>
-            <canvas id="canvas" style="display: none;"></canvas>
+        <div class="input-group">
+            <label>2. العنوان الفرعي (Sub-heading)</label>
+            <input type="text" id="input-2" value="خدمات تكلفة" oninput="updateText(2)">
         </div>
 
-        <div class="fixer-actions">
-            <button id="downloadBtn" class="btn-primary" disabled>📥 تحميل الصورة المعدلة</button>
+        <div class="input-group">
+            <label>3. فقاعة يمين 1 (Green)</label>
+            <input type="text" id="input-3" value="وفر 70% من وقتك" oninput="updateText(3)">
+        </div>
+
+        <div class="input-group">
+            <label>4. فقاعة يمين 2 (Blue)</label>
+            <input type="text" id="input-4" value="خدماتك على الخريطة" oninput="updateText(4)">
+        </div>
+
+        <div class="input-group">
+            <label>5. فقاعة يسار 1 (Red)</label>
+            <input type="text" id="input-5" value="حول أعمالك إلى تكلفة" oninput="updateText(5)">
+        </div>
+
+        <div class="input-group">
+            <label>6. فقاعة يسار 2 (Orange)</label>
+            <input type="text" id="input-6" value="AI يرفع منتجاتك تلقائيًا" oninput="updateText(6)">
+        </div>
+
+        <div class="input-group">
+            <label>7. زر الدعوة (Bottom CTA)</label>
+            <input type="text" id="input-7" value="انضم لآلاف التجار في الرياض" oninput="updateText(7)">
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-save" onclick="saveImage()">💾 حفظ الصورة</button>
+        </div>
+
+        <div style="margin-top: 20px; font-size: 0.8rem; color: #64748b; text-align: center;">
+            * استخدم html2canvas للحفظ (مدمج)
         </div>
     </div>
 
+    <!-- Canvas Area -->
+    <div class="canvas-area">
+        <div class="ad-container" id="adContainer">
+            <!-- Banners -->
+            <div id="banner-1" class="banner">مدينة الرياض</div>
+            <div id="banner-2" class="banner">خدمات تكلفة</div>
+            <div id="banner-3" class="banner">وفر 70% من وقتك</div>
+            <div id="banner-4" class="banner">خدماتك على الخريطة</div>
+            <div id="banner-5" class="banner">حول أعمالك إلى تكلفة</div>
+            <div id="banner-6" class="banner">AI يرفع منتجاتك تلقائيًا</div>
+            <div id="banner-7" class="banner">انضم لآلاف التجار في الرياض</div>
+        </div>
+    </div>
+
+    <!-- html2canvas Library -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
     <script>
-        let adsData = [];
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        const imageInput = document.getElementById('imageInput');
-        const citySelect = document.getElementById('citySelect');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const customTitleInput = document.getElementById('customTitle');
-        const customMessagesInput = document.getElementById('customMessages');
-        const applyCustomBtn = document.getElementById('applyCustomBtn');
-
-        let currentImage = null;
-
-        // Load YAML Data
-        async function loadData() {
-            try {
-                const response = await fetch('ads_tiktok.yaml');
-                const text = await response.text();
-
-                if (typeof jsyaml !== 'undefined') {
-                    adsData = jsyaml.load(text);
-                    populateCities();
-                } else {
-                    console.error('js-yaml library not loaded');
-                }
-            } catch (error) {
-                console.error('Error loading YAML:', error);
-            }
-        }
-
-        function populateCities() {
-            citySelect.innerHTML = '<option value="">-- اختر المدينة --</option>';
-            adsData.forEach(ad => {
-                if (ad.City) {
-                    const option = document.createElement('option');
-                    option.value = ad.City;
-                    option.textContent = ad.City;
-                    citySelect.appendChild(option);
-                }
-            });
+        // Update Text Function
+        function updateText(id) {
+            const input = document.getElementById(`input-${id}`);
+            const banner = document.getElementById(`banner-${id}`);
+            banner.textContent = input.value;
         }
 
         // Handle Image Upload
-        imageInput.addEventListener('change', (e) => {
+        const imageInput = document.getElementById('imageInput');
+        const adContainer = document.getElementById('adContainer');
+
+        imageInput.addEventListener('change', function (e) {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = (event) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        currentImage = img;
-                        canvas.width = img.width;
-                        canvas.height = img.height;
-                        canvas.style.display = 'block';
-                        document.getElementById('canvasContainer').querySelector('p').style.display = 'none';
-                        draw();
-                        downloadBtn.disabled = false;
-                    };
-                    img.src = event.target.result;
-                };
+                reader.onload = function (event) {
+                    adContainer.style.backgroundImage = `url('${event.target.result}')`;
+                }
                 reader.readAsDataURL(file);
             }
         });
 
-        // Handle City Selection
-        citySelect.addEventListener('change', () => {
-            const selectedCity = citySelect.value;
-            if (selectedCity) {
-                const cityData = adsData.find(ad => ad.City === selectedCity);
-                if (cityData) {
-                    // Pre-fill custom inputs
-                    customTitleInput.value = "تطبيق تكلفة";
-                    if (cityData.KeyMessages) {
-                        customMessagesInput.value = cityData.KeyMessages.join(', ');
-                    }
-                    draw(cityData.City, cityData.KeyMessages);
-                }
-            }
-        });
+        // Save Image Function
+        function saveImage() {
+            // Temporarily remove scale to capture full resolution
+            const originalTransform = adContainer.style.transform;
+            adContainer.style.transform = 'scale(1)';
 
-        // Handle Custom Text Apply
-        applyCustomBtn.addEventListener('click', () => {
-            const title = customTitleInput.value;
-            const messages = customMessagesInput.value.split(',').map(s => s.trim()).filter(s => s);
-            draw(null, null, title, messages);
-        });
+            // We need to append it to body temporarily if it's hidden or scaled weirdly, 
+            // but here it's visible. However, capturing a scaled element might be tricky.
+            // Best approach: Clone it, position it off-screen at full size, capture, then remove.
 
-        function draw(cityName = null, messages = null, customTitle = null, customMsgs = null) {
-            if (!currentImage) return;
+            html2canvas(adContainer, {
+                scale: 1, // Capture at 1:1 of the element's size (1080x1080)
+                useCORS: true,
+                backgroundColor: null
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'taklifa-ad-fixed.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
 
-            // Clear and draw original image
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(currentImage, 0, 0);
-
-            let titleToDraw = "";
-            let msgsToDraw = [];
-
-            if (customTitle) {
-                titleToDraw = customTitle;
-                msgsToDraw = customMsgs || [];
-            } else if (cityName) {
-                const cityData = adsData.find(ad => ad.City === cityName);
-                if (cityData) {
-                    // Default title is now the App Name, not the City
-                    titleToDraw = "تطبيق تكلفة";
-                    msgsToDraw = cityData.KeyMessages || [];
-                }
-            } else {
-                // Try to use inputs if nothing else
-                if (customTitleInput.value) {
-                    titleToDraw = customTitleInput.value;
-                    msgsToDraw = customMessagesInput.value.split(',').map(s => s.trim()).filter(s => s);
-                }
-            }
-
-            if (titleToDraw) {
-                drawOverlay(titleToDraw, msgsToDraw);
-            }
+                // Restore scale
+                adContainer.style.transform = originalTransform;
+            });
         }
 
-        function drawOverlay(title, messages) {
-            const w = canvas.width;
-            const h = canvas.height;
+        // Auto-load ad_image.jpg if exists
+        window.onload = function () {
+            const img = new Image();
+            img.onload = function () {
+                adContainer.style.backgroundImage = `url('ad_image.jpg')`;
+            };
+            img.onerror = function () {
+                console.log("No default ad_image.jpg found.");
+            };
+            img.src = 'ad_image.jpg';
 
-            // 1. Title (Top Center)
-            ctx.save();
+            // Adjust scale on resize
+            window.addEventListener('resize', adjustScale);
+            adjustScale();
+        };
 
-            // Shadow/Glow for readability
-            ctx.shadowColor = "rgba(0,0,0,0.8)";
-            ctx.shadowBlur = 15;
-            ctx.shadowOffsetX = 0;
-            ctx.shadowOffsetY = 4;
+        function adjustScale() {
+            const area = document.querySelector('.canvas-area');
+            const container = document.getElementById('adContainer');
+            const padding = 40;
 
-            // Make title slightly larger and maybe distinct color if needed, but white is standard
-            ctx.font = `bold ${h * 0.09}px 'Cairo', sans-serif`; // Increased size slightly
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'top';
-            ctx.fillStyle = '#ffffff';
+            const availableWidth = area.clientWidth - padding;
+            const availableHeight = area.clientHeight - padding;
 
-            // Draw Title
-            ctx.fillText(title, w / 2, h * 0.05);
-            ctx.restore();
+            const scale = Math.min(
+                availableWidth / 1080,
+                availableHeight / 1080
+            );
 
-            // 2. Key Messages (Bottom Area)
-            if (messages && messages.length > 0) {
-                const startY = h * 0.75;
-                const fontSize = h * 0.035;
-                const padding = fontSize * 0.8;
-                const gap = fontSize * 1.5;
-
-                ctx.font = `bold ${fontSize}px 'Cairo', sans-serif`;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-
-                messages.forEach((msg, i) => {
-                    const y = startY + (i * gap);
-                    const textMetrics = ctx.measureText(msg);
-                    const textWidth = textMetrics.width;
-                    const bgWidth = textWidth + (padding * 2);
-                    const bgHeight = fontSize * 1.8;
-
-                    // Draw Bubble Background
-                    ctx.save();
-                    ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
-                    ctx.shadowColor = "rgba(0,0,0,0.3)";
-                    ctx.shadowBlur = 10;
-
-                    // Rounded Rectangle
-                    roundRect(ctx, (w - bgWidth) / 2, y - bgHeight / 2, bgWidth, bgHeight, 20);
-                    ctx.fill();
-                    ctx.restore();
-
-                    // Draw Text
-                    ctx.fillStyle = "#1e293b"; // Dark text
-                    ctx.fillText(msg, w / 2, y);
-                });
-            }
+            container.style.transform = `scale(${scale})`;
         }
-
-        function roundRect(ctx, x, y, width, height, radius) {
-            ctx.beginPath();
-            ctx.moveTo(x + radius, y);
-            ctx.lineTo(x + width - radius, y);
-            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-            ctx.lineTo(x + width, y + height - radius);
-            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-            ctx.lineTo(x + radius, y + height);
-            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-            ctx.lineTo(x, y + radius);
-            ctx.quadraticCurveTo(x, y, x + radius, y);
-            ctx.closePath();
-        }
-
-        // Download
-        downloadBtn.addEventListener('click', () => {
-            const link = document.createElement('a');
-            link.download = `fixed_ad_${Date.now()}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        });
-
-        // Initialize
-        loadData();
     </script>
-
 </body>
 
 </html>
