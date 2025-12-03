@@ -168,7 +168,7 @@
                 <label style="display:block; margin-bottom:10px;">أو خصص النصوص يدوياً:</label>
                 <div class="control-group" style="margin-bottom:10px;">
                     <label>العنوان الرئيسي:</label>
-                    <input type="text" id="customTitle" placeholder="مثلاً: مدينة الرياض">
+                    <input type="text" id="customTitle" placeholder="مثلاً: تطبيق تكلفة">
                 </div>
                 <div class="control-group">
                     <label>الرسائل (افصل بينها بفاصلة):</label>
@@ -260,7 +260,7 @@
                 const cityData = adsData.find(ad => ad.City === selectedCity);
                 if (cityData) {
                     // Pre-fill custom inputs
-                    customTitleInput.value = `مدينة ${cityData.City}`;
+                    customTitleInput.value = "تطبيق تكلفة";
                     if (cityData.KeyMessages) {
                         customMessagesInput.value = cityData.KeyMessages.join(', ');
                     }
@@ -292,7 +292,8 @@
             } else if (cityName) {
                 const cityData = adsData.find(ad => ad.City === cityName);
                 if (cityData) {
-                    titleToDraw = `مدينة ${cityData.City}`;
+                    // Default title is now the App Name, not the City
+                    titleToDraw = "تطبيق تكلفة";
                     msgsToDraw = cityData.KeyMessages || [];
                 }
             } else {
@@ -321,7 +322,8 @@
             ctx.shadowOffsetX = 0;
             ctx.shadowOffsetY = 4;
 
-            ctx.font = `bold ${h * 0.08}px 'Cairo', sans-serif`;
+            // Make title slightly larger and maybe distinct color if needed, but white is standard
+            ctx.font = `bold ${h * 0.09}px 'Cairo', sans-serif`; // Increased size slightly
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
             ctx.fillStyle = '#ffffff';
