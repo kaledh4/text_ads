@@ -3,12 +3,7 @@
    ------------------------------------------------- */
 
 const container = document.getElementById('ad-container');
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const imageModal = document.getElementById('image-modal');
-const generatedImage = document.getElementById('generated-image');
-const downloadBtn = document.getElementById('download-btn');
-const closeImageModalBtn = document.getElementById('close-image-modal');
+
 
 // Daily Image Elements - REMOVED
 // const dailyImageWrapper = document.getElementById('daily-image-wrapper');
@@ -150,8 +145,8 @@ async function init() {
     console.log('YAML library check:', typeof jsyaml !== 'undefined' ? 'jsyaml available' : (typeof YAML !== 'undefined' ? 'YAML available' : 'No YAML library'));
 
     // Default to X ads
+    // Default to X ads
     loadAds('x');
-    setupModalListeners();
 }
 
 /* ---------- Logic: Load from JSON ---------- */
@@ -274,164 +269,7 @@ function renderLoading() {
     `;
 }
 
-/* ---------- Storage Logic ---------- */
-function loadDailyImageFromStorage(type) {
-    const today = new Date().toISOString().split('T')[0];
-    const key = `daily_image_${type}_${today}`;
-    const savedImage = localStorage.getItem(key);
 
-    if (savedImage) {
-        // Render saved image
-        const imgElement = document.createElement('img');
-        imgElement.src = savedImage;
-        imgElement.alt = "Daily Generated Ad (Saved)";
-
-        dailyImageWrapper.innerHTML = '';
-        dailyImageWrapper.appendChild(imgElement);
-
-        generateDailyBtn.textContent = '🔄 توليد صورة جديدة (استبدال)';
-        generateDailyBtn.disabled = false;
-
-        // Add Download Button
-        const downloadSavedBtn = document.createElement('button');
-        downloadSavedBtn.className = 'action-btn download-saved-btn';
-        downloadSavedBtn.style.marginTop = '10px';
-        downloadSavedBtn.style.fontSize = '0.9rem';
-        downloadSavedBtn.innerHTML = '📥 تحميل الصورة المحفوظة';
-        downloadSavedBtn.onclick = () => {
-            const link = document.createElement('a');
-            link.download = `taklifa-daily-${type}-${today}.png`;
-            link.href = savedImage;
-            link.click();
-        };
-
-        // Clear previous buttons if any
-        const existingDownload = dailyImageWrapper.parentElement.querySelector('.download-saved-btn');
-        if (existingDownload) existingDownload.remove();
-
-        dailyImageWrapper.parentElement.appendChild(downloadSavedBtn);
-
-    } else {
-        resetDailyImageSection();
-    }
-}
-
-function saveDailyImageToStorage(type, dataUrl) {
-    const today = new Date().toISOString().split('T')[0];
-    const key = `daily_image_${type}_${today}`;
-    localStorage.setItem(key, dataUrl);
-}
-
-function resetDailyImageSection() {
-    dailyImageWrapper.innerHTML = '<div class="placeholder-image"><span>اضغط لتوليد صورة اليوم</span></div>';
-    generateDailyBtn.disabled = false;
-    generateDailyBtn.textContent = '✨ توليد صورة حصرية لليوم';
-
-    // Remove download button if exists
-    const existingDownload = dailyImageWrapper.parentElement.querySelector('.download-saved-btn');
-    if (existingDownload) existingDownload.remove();
-}
-
-/* ---------- Daily Image Generation Logic ---------- */
-async function generateDailyImage(ads, type) {
-    // Set loading state
-    dailyImageWrapper.innerHTML = '<div class="loading">جاري توليد صورة اليوم... 🎨</div>';
-    generateDailyBtn.disabled = true;
-    generateDailyBtn.textContent = '⏳ جاري المعالجة...';
-
-    // Remove download button if exists during generation
-    const existingDownload = dailyImageWrapper.parentElement.querySelector('.download-saved-btn');
-    if (existingDownload) existingDownload.remove();
-
-    // Construct Prompt
-    const dateSeed = new Date().toISOString().split('T')[0];
-    const randomSeed = Math.floor(Math.random() * 1000);
-    const platformVibe = type === 'x' ? "minimalist, twitter style" : "aesthetic, instagram style, vibrant";
-
-    const prompt = encodeURIComponent(`${IMAGE_STYLE}, ${BRAND_CONTEXT}, ${platformVibe}`);
-    const imageUrl = `https://image.pollinations.ai/prompt/${prompt}?width=1080&height=1080&nologo=true&seed=${randomSeed}`;
-
-    try {
-        // Load generated image
-        const img = new Image();
-        img.crossOrigin = "anonymous";
-        img.src = imageUrl;
-
-        await new Promise((resolve, reject) => {
-            img.onload = resolve;
-            img.onerror = reject;
-        });
-
-        // Draw to Canvas for Logo Overlay
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-        // Dark Gradient Overlay
-        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-        gradient.addColorStop(0, "rgba(0,0,0,0.6)");
-        gradient.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, 300);
-
-        // Draw Logo
-        const logoWidth = 250;
-        const logoHeight = (logo.height / logo.width) * logoWidth;
-        const logoX = (canvas.width - logoWidth) / 2;
-        const logoY = 50;
-        ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
-
-        // Get Final Image Data
-        const finalImageSrc = canvas.toDataURL('image/png');
-
-        // Save to Storage
-        saveDailyImageToStorage(type, finalImageSrc);
-
-        // Update UI
-        const finalImgElement = document.createElement('img');
-        finalImgElement.src = finalImageSrc;
-        finalImgElement.alt = "Daily Generated Ad";
-
-        dailyImageWrapper.innerHTML = '';
-        dailyImageWrapper.appendChild(finalImgElement);
-
-        // Change button to Download
-        generateDailyBtn.textContent = '🔄 توليد صورة جديدة (استبدال)';
-        generateDailyBtn.disabled = false;
-
-        // Add Download Button
-        const downloadSavedBtn = document.createElement('button');
-        downloadSavedBtn.className = 'action-btn download-saved-btn';
-        downloadSavedBtn.style.marginTop = '10px';
-        downloadSavedBtn.style.fontSize = '0.9rem';
-        downloadSavedBtn.innerHTML = '📥 حفظ الصورة';
-        downloadSavedBtn.onclick = () => {
-            const link = document.createElement('a');
-            link.download = `taklifa-daily-${type}-${dateSeed}.png`;
-            link.href = finalImageSrc;
-            link.click();
-        };
-        dailyImageWrapper.parentElement.appendChild(downloadSavedBtn);
-
-    } catch (error) {
-        console.error('Image Generation Error:', error);
-        dailyImageWrapper.innerHTML = '<p style="color:red; padding:1rem;">حدث خطأ. حاول مرة أخرى.</p>';
-        generateDailyBtn.disabled = false;
-        generateDailyBtn.textContent = '🔄 محاولة مجدداً';
-    }
-}
-
-/* ---------- Modal Listeners ---------- */
-function setupModalListeners() {
-    closeImageModalBtn.addEventListener('click', () => {
-        imageModal.classList.add('hidden');
-    });
-
-    imageModal.addEventListener('click', (e) => {
-        if (e.target === imageModal) {
-            imageModal.classList.add('hidden');
-        }
-    });
-}
 
 /* ---------- Event Listeners ---------- */
 // Tab switching
