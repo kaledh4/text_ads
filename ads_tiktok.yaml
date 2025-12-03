@@ -1,10 +1,12 @@
 # إعلانات TikTok - نمط الديوراما الواقعي (Hand-Held Diorama)
-# تم تحديث النمط ليكون "Hyper-realistic 3D Diorama" محمول باليد
-# عدد الإعلانات: 4
+# تم تحديث النمط:
+# 1. عدد الإعلانات: 4 مدن رئيسية.
+# 2. العلامة 3D في الصورة: "Taklifa App" بدلاً من اسم المدينة.
+# 3. اسم المدينة يستخدم فقط لتحديد معالم الخلفية (Landmarks).
 
 - City: الرياض
   Prompt: |
-    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Riyadh. Feature its most iconic landmarks like the Kingdom Centre Tower, small-scale modern architecture, and lush miniature greenery. A bold 3D "RIYADH" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
+    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Riyadh. Feature its most iconic landmarks like the Kingdom Centre Tower, small-scale modern architecture, and lush miniature greenery. A bold 3D "Taklifa App" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
   
   KeyMessages:
     - "حوّل أعمالك إلى تكلفة يخدمك"
@@ -21,7 +23,7 @@
 
 - City: جدة
   Prompt: |
-    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Jeddah. Feature its most iconic landmarks like the King Fahd Fountain, the Corniche waterfront, and small-scale coastal architecture. A bold 3D "JEDDAH" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
+    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Jeddah. Feature its most iconic landmarks like the King Fahd Fountain, the Corniche waterfront, and small-scale coastal architecture. A bold 3D "Taklifa App" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
   
   KeyMessages:
     - "متجرك على تكلفة = نجاح مضمون"
@@ -38,7 +40,7 @@
 
 - City: الدمام
   Prompt: |
-    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Dammam. Feature its most iconic landmarks, industrial port structures, and small-scale modern architecture. A bold 3D "DAMMAM" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
+    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Dammam. Feature its most iconic landmarks, industrial port structures, and small-scale modern architecture. A bold 3D "Taklifa App" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
   
   KeyMessages:
     - "خدمات البناء على الخريطة"
@@ -55,7 +57,7 @@
 
 - City: مكة
   Prompt: |
-    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Makkah. Feature its most iconic landmarks, the Clock Tower, mountainous terrain, and respectful small-scale architecture. A bold 3D "MAKKAH" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
+    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Makkah. Feature its most iconic landmarks, the Clock Tower, mountainous terrain, and respectful small-scale architecture. A bold 3D "Taklifa App" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
   
   KeyMessages:
     - "خدم ضيوف الرحمن بكفاءة"
