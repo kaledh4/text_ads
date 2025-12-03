@@ -1,0 +1,7 @@
+node_modules
+.env
+*.db-journal
+*.db-wal
+
+ads_example_for_img_generation/
+

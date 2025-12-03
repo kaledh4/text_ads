@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تكلفة - الإعلانات التسويقية اليومية</title>
+    <meta name="description" content="منصة تكلفة للإعلانات التسويقية اليومية - X، إنستقرام، تيك توك">
+    <meta name="theme-color" content="#00d4ff">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="تكلفة">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>📢 إعلانات يومية جاهزة</h1>
+            <p>انسخ وانشر مباشرة لتطبيقك!</p>
+        </div>
+    </header>
+
+    <nav id="tabs">
+        <button class="tab active" data-target="x">
+            <span class="icon">🐦</span> منصة X
+        </button>
+        <button class="tab" data-target="ig">
+            <span class="icon">📸</span> إنستقرام
+        </button>
+        <button class="tab" data-target="tiktok">
+            <span class="icon">🎵</span> تيك توك
+        </button>
+    </nav>
+
+    <main id="ad-container" class="ads-container">
+        <!-- Ads will be injected here -->
+    </main>
+
+    <footer>
+        <p>تم التطوير بواسطة ABO_OMAR | يتم التحديث يومياً 🤖</p>
+    </footer>
+
+    <!-- Hidden Canvas for Image Processing -->
+    <canvas id="canvas" width="1080" height="1080" style="display: none;"></canvas>
+
+    <!-- Image Generation Modal -->
+    <div id="image-modal" class="modal hidden">
+        <div class="modal-content image-modal-content">
+            <h2>🎨 صورتك جاهزة</h2>
+            <div class="image-preview-container">
+                <img id="generated-image" src="" alt="Generated Ad" />
+            </div>
+            <div class="modal-actions">
+                <button id="download-btn" class="action-btn">📥 حفظ الصورة</button>
+                <button id="close-image-modal" class="action-btn secondary">إغلاق</button>
+            </div>
+            <p class="note">تم دمج الشعار تلقائياً ✨</p>
+        </div>
+    </div>
+
+    <script src="./js-yaml.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

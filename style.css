@@ -1,0 +1,914 @@
+/* ---------- Global ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #0d0d0d, #1a1a2e);
+    color: #f0f0f0;
+    min-height: 100vh;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* ---------- Header ---------- */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 600px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+}
+
+#settings-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#settings-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin-top: 0.5rem;
+}
+
+/* ---------- Tabs ---------- */
+#tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tab {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.tab:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.tab.active {
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    font-weight: 600;
+}
+
+/* ---------- Card ---------- */
+.ad-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin: 0.5rem 0;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.4s ease;
+}
+
+.ad-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.platform-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.ad-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    flex: 1;
+    text-align: right;
+}
+
+.ad-content {
+    margin-bottom: 1rem;
+}
+
+.ad-text {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    white-space: pre-line;
+    margin: 0;
+}
+
+.json-preview {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    color: #a8ff78;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 0;
+    overflow-x: auto;
+    direction: ltr;
+    text-align: left;
+    white-space: pre-wrap;
+    font-size: 0.95rem;
+}
+
+.ad-actions {
+    text-align: center;
+}
+
+.copy-btn {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1rem;
+}
+
+.ad-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.ad-text {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    white-space: pre-line;
+    /* keep line‑breaks */
+}
+
+.copy-btn {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    background: #ff7e5f;
+    border: none;
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.copy-btn:hover {
+    background: #feb47b;
+}
+
+/* ---------- Modal ---------- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background: #1a1a2e;
+    padding: 2rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #ff7e5f;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-family: inherit;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.modal-actions button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+#save-key-btn {
+    background: #ff7e5f;
+    color: #fff;
+}
+
+#close-modal-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.note {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-top: 1rem;
+}
+
+/* ---------- Loading State ---------- */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: #feb47b;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+/* ---------- Daily Image Section ---------- */
+.daily-image-section {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.5s ease;
+}
+
+.daily-image-card {
+    background: linear-gradient(145deg, #1e1e2f, #252540);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.daily-image-header h2 {
+    margin: 0;
+    color: #a8ff78;
+    font-size: 1.4rem;
+}
+
+.daily-image-header p {
+    margin: 0.5rem 0 1rem 0;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.daily-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.daily-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: fadeIn 0.5s ease;
+}
+
+.placeholder-image {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.9rem;
+}
+
+.generate-daily-btn {
+    width: 100%;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    justify-content: center;
+    font-weight: bold;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+.generate-daily-btn:hover {
+    box-shadow: 0 0 20px rgba(0, 198, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ---------- Footer ---------- */
+footer {
+    margin-top: auto;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    padding-bottom: 1rem;
+}
+
+footer a {
+    color: #ff7e5f;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Action Buttons ---------- */
+.actions-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.action-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.shuffle-btn {
+    color: #feb47b;
+    border-color: #feb47b;
+}
+
+.shuffle-btn:hover {
+    background: rgba(254, 180, 123, 0.1);
+}
+
+/* ---------- TikTok Card ---------- */
+.tiktok-card {
+    text-align: right;
+}
+
+.tiktok-card h3 {
+    color: #feb47b;
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tiktok-card h3:first-child {
+    margin-top: 0;
+}
+
+.tiktok-card p {
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.tiktok-card .prompt-text {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #a8ff78;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    direction: ltr;
+    text-align: left;
+}
+
+.tiktok-card hr {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+}
+
+.tiktok-card .copy-btn {
+    position: static;
+    margin-top: 0.5rem;
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: auto;
+}
+
+.tiktok-card .copy-btn:hover {
+    background: #ff7e5f;
+    border-color: transparent;
+}
+
+/* ---------- Themes ---------- */
+.theme-x .copy-btn {
+    background: #1DA1F2;
+    color: #fff;
+}
+
+.theme-x .copy-btn:hover {
+    background: #0c85d0;
+}
+
+.theme-x .ad-card {
+    border-right: 4px solid #1DA1F2;
+}
+
+.theme-ig .copy-btn {
+    background: #ff7e5f;
+}
+
+.theme-ig .ad-card {
+    border-right: 4px solid #ff7e5f;
+}
+
+.theme-tiktok .copy-btn {
+    background: #ffffff;
+    color: #000;
+    font-weight: bold;
+}
+
+.theme-tiktok .copy-btn:hover {
+    background: #e0e0e0;
+}
+
+.theme-tiktok .ad-card {
+    border-right: 4px solid #ffffff;
+}
+
+.theme-tiktok .tiktok-card h3 {
+    color: #ffffff;
+}
+
+.theme-tiktok .tiktok-card .prompt-text {
+    color: #00ffea;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ---------- Image Generation Styles ---------- */
+.image-modal-content {
+    max-width: 500px;
+    width: 95%;
+    background: linear-gradient(145deg, #1a1a2e, #16213e);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.image-preview-container {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 1rem 0;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.action-btn.secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.action-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.generate-btn {
+    background: linear-gradient(90deg, #8e2de2, #4a00e0);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+    justify-content: center;
+}
+
+.generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.4);
+}
+
+/* ---------- Mobile Optimization ---------- */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.shuffle-btn {
+    color: #feb47b;
+    border-color: #feb47b;
+}
+
+.shuffle-btn:hover {
+    background: rgba(254, 180, 123, 0.1);
+}
+
+/* ---------- TikTok Card ---------- */
+.tiktok-card {
+    text-align: right;
+}
+
+.tiktok-card h3 {
+    color: #feb47b;
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tiktok-card h3:first-child {
+    margin-top: 0;
+}
+
+.tiktok-card p {
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.tiktok-card .prompt-text {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #a8ff78;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    direction: ltr;
+    text-align: left;
+}
+
+.tiktok-card hr {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+}
+
+.tiktok-card .copy-btn {
+    position: static;
+    margin-top: 0.5rem;
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: auto;
+}
+
+.tiktok-card .copy-btn:hover {
+    background: #ff7e5f;
+    border-color: transparent;
+}
+
+/* ---------- Themes ---------- */
+.theme-x .copy-btn {
+    background: #1DA1F2;
+    color: #fff;
+}
+
+.theme-x .copy-btn:hover {
+    background: #0c85d0;
+}
+
+.theme-x .ad-card {
+    border-right: 4px solid #1DA1F2;
+}
+
+.theme-ig .copy-btn {
+    background: #ff7e5f;
+}
+
+.theme-ig .ad-card {
+    border-right: 4px solid #ff7e5f;
+}
+
+.theme-tiktok .copy-btn {
+    background: #ffffff;
+    color: #000;
+    font-weight: bold;
+}
+
+.theme-tiktok .copy-btn:hover {
+    background: #e0e0e0;
+}
+
+.theme-tiktok .ad-card {
+    border-right: 4px solid #ffffff;
+}
+
+.theme-tiktok .tiktok-card h3 {
+    color: #ffffff;
+}
+
+.theme-tiktok .tiktok-card .prompt-text {
+    color: #00ffea;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ---------- Image Generation Styles ---------- */
+.image-modal-content {
+    max-width: 500px;
+    width: 95%;
+    background: linear-gradient(145deg, #1a1a2e, #16213e);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.image-preview-container {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 1rem 0;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.action-btn.secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.action-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.generate-btn {
+    background: linear-gradient(90deg, #8e2de2, #4a00e0);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+    justify-content: center;
+}
+
+.generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.4);
+}
+
+/* ---------- Mobile Optimization ---------- */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .ad-card {
+        padding: 1.2rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+    }
+}
+
+/* ---------- PWA Install Banner ---------- */
+.install-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.install-banner.visible {
+    transform: translateY(0);
+}
+
+.install-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 600px;
+    width: 100%;
+}
+
+.install-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+.install-info {
+    flex: 1;
+    text-align: right;
+}
+
+.install-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.install-info p {
+    margin: 0.2rem 0 0;
+    font-size: 0.85rem;
+    color: #b8b8d1;
+}
+
+.install-actions {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.install-btn-confirm {
+    background: linear-gradient(90deg, #00d4ff, #0072ff);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+    white-space: nowrap;
+}
+
+.install-btn-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.4);
+}
+
+.install-btn-cancel {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.install-btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
