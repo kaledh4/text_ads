@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إعلانات تكلفة اليومية</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="js-yaml.min.js"></script>
+    <meta name="theme-color" content="#2563eb">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-area">
+                <img src="icons/icons8-ads-64.png" alt="Ads" class="header-icon">
+                <div>
+                    <h1>إعلانات تكلفة</h1>
+                    <p>نصوص إعلانية يومية متجددة</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="fixer.html" class="tool-link">🛠️ مصحح الصور</a>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" data-target="x">
+                <img src="icons/icons8-twitter-bird-48.png" alt="X" class="tab-icon">
+                <span>منصة X</span>
+            </button>
+            <button class="tab" data-target="ig">
+                <img src="icons/icons8-instagram-50.png" alt="Instagram" class="tab-icon">
+                <span>انستقرام</span>
+            </button>
+            <button class="tab" data-target="tiktok">
+                <img src="icons/icons8-tiktok-48.png" alt="TikTok" class="tab-icon">
+                <span>تيك توك</span>
+            </button>
+        </div>
+
+        <div id="ad-container" class="ad-grid theme-x">
+            <!-- Ads will be injected here -->
+            <div class="loading">جاري تحميل الإعلانات... 📡</div>
+        </div>
+
+        <footer>
+            <p>تم التحديث: <span id="last-update">اليوم</span></p>
+            <p class="version">v2.1 | Nano Banana Edition 🍌</p>
+        </footer>
+    </div>
+
+    <!-- Hidden Canvas for Image Processing -->
+    <canvas id="canvas" width="1080" height="1080" style="display:none;"></canvas>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-image-modal" class="close">&times;</span>
+            <img id="generated-image" src="" alt="Generated Ad">
+            <button id="download-btn" class="action-btn">📥 تحميل الصورة</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

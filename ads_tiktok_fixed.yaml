@@ -1,0 +1,71 @@
+# إعلانات TikTok - نسخة معدلة للنصوص العربية
+# استخدم هذه النسخة إذا كانت النصوص العربية تظهر بشكل غريب في Nano Banana
+# الخطوات:
+# 1. انسخ الـ Prompt (تم إزالة النصوص العربية منه لضمان جودة الصورة)
+# 2. ولد الصورة في Nano Banana
+# 3. استخدم سكريبت add_text.py لإضافة النصوص العربية بشكل صحيح
+
+- City: الرياض
+  Prompt: |
+    Present a clear, 45° top-down isometric miniature 3D scene of Riyadh, Saudi Arabia.
+    
+    At the top-center, leave a clear empty space or a blank modern signboard for text. Background is a soft, solid warm beige matching Saudi desert tones.
+    
+    The 3D scene shows:
+    - Miniature version of Kingdom Centre Tower and other iconic Riyadh landmarks
+    - Small 3D figures of merchants and service providers moving around
+    - Floating 3D blank speech bubbles (ready for text overlay)
+    - Tiny shops and service locations marked with pins
+    - Small animated pathways showing customer flow between locations
+    
+    Color scheme: Warm desert tones (beige, sand, gold) with vibrant green accents.
+    Style: Clean, modern, playful isometric 3D with soft shadows.
+    
+    Bottom area: Clear space for footer text.
+  
+  KeyMessages:
+    - "حوّل أعمالك إلى تكلفة يخدمك"
+    - "وفر 70% من وقتك مع الذكاء الاصطناعي"
+    - "خدماتك ومتجرك على الخريطة"
+    - "آلاف التجار يثقون بتكلفة"
+  
+  Hashtags:
+    - تكلفة
+    - الرياض
+    - ذكاء_اصطناعي
+    - توفير_وقت
+    - تجارة_الكترونية
+
+- City: جدة
+  Prompt: |
+    Present a clear, 45° top-down isometric miniature 3D scene of Jeddah, Saudi Arabia.
+    
+    At the top-center, leave a clear empty space or a blank modern signboard for text. Background is a soft, solid ocean blue gradient.
+    
+    The 3D scene shows:
+    - Miniature Jeddah Corniche waterfront with tiny palm trees
+    - King Fahd Fountain in miniature form
+    - Small 3D merchant figures managing stores
+    - Floating 3D blank speech bubbles (ready for text overlay)
+    - Coastal business district with markers
+    - Animated order notifications flowing between locations
+    
+    Color scheme: Ocean blues, sandy beige, with coral and turquoise accents.
+    Style: Bright, optimistic isometric 3D with seaside atmosphere.
+    
+    Bottom area: Clear space for footer text.
+  
+  KeyMessages:
+    - "متجرك على تكلفة = نجاح مضمون"
+    - "رفع المنتجات بالذكاء الاصطناعي"
+    - "عملاء أكثر بتكلفة أقل"
+    - "قصص نجاح حقيقية من جدة"
+  
+  Hashtags:
+    - تكلفة
+    - جدة
+    - متاجر_الكترونية
+    - نجاح_تجاري
+    - البحر_الأحمر
+
+# ... (يمكن إضافة باقي المدن بنفس النمط)
