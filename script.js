@@ -192,21 +192,29 @@ function renderAds(ads, type) {
         return;
     }
 
+    // Define Icons
+    const icons = {
+        'x': 'icons/icons8-twitter-bird-48.png',
+        'ig': 'icons/icons8-instagram-50.png',
+        'tiktok': 'icons/icons8-tiktok-48.png'
+    };
+
+    const iconSrc = icons[type] || icons['x'];
+
     // Show all ads
     ads.forEach((ad, index) => {
         const adCard = document.createElement('div');
         adCard.className = 'ad-card';
 
+        const ordinals = ['الاول', 'الثاني', 'الثالث', 'الرابع'];
+        const ordinal = ordinals[index] || (index + 1);
+
         if (type === 'tiktok') {
             // Handle TikTok ads (complex JSON objects)
-            const ordinals = ['الاول', 'الثاني', 'الثالث', 'الرابع'];
-            const ordinal = ordinals[index] || (index + 1);
-
             let displayText;
             let copyText;
 
             if (typeof ad === 'object') {
-                // Format the JSON nicely for display
                 displayText = JSON.stringify(ad, null, 2);
                 copyText = JSON.stringify(ad, null, 2);
             } else {
@@ -216,7 +224,10 @@ function renderAds(ads, type) {
 
             adCard.innerHTML = `
                 <div class="ad-header">
-                    <h3>الاعلان ${ordinal} 🎥</h3>
+                    <h3>
+                        <img src="${iconSrc}" alt="${type}" class="ad-icon-img">
+                        الاعلان ${ordinal}
+                    </h3>
                 </div>
                 <div class="ad-content">
                     <pre>${displayText}</pre>
@@ -226,7 +237,6 @@ function renderAds(ads, type) {
                 </div>
             `;
 
-            // Add click handler after element is added to DOM
             container.appendChild(adCard);
 
             const copyBtn = adCard.querySelector(`.copy-btn-${index}`);
@@ -236,12 +246,12 @@ function renderAds(ads, type) {
             });
         } else {
             // Handle X and Instagram ads
-            const ordinals = ['الاول', 'الثاني', 'الثالث', 'الرابع'];
-            const ordinal = ordinals[index] || (index + 1);
-
             adCard.innerHTML = `
                 <div class="ad-header">
-                    <h3>الاعلان ${ordinal} ${type === 'x' ? '🐦' : '📸'}</h3>
+                    <h3>
+                        <img src="${iconSrc}" alt="${type}" class="ad-icon-img">
+                        الاعلان ${ordinal}
+                    </h3>
                 </div>
                 <div class="ad-content">
                     <p>${ad}</p>
