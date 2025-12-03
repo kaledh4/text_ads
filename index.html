@@ -4,67 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تكلفة - الإعلانات التسويقية اليومية</title>
-    <meta name="description" content="منصة تكلفة للإعلانات التسويقية اليومية - X، إنستقرام، تيك توك">
-    <meta name="theme-color" content="#00d4ff">
-    <link rel="manifest" href="./manifest.json">
-    <link rel="apple-touch-icon" href="./icons/icon-192.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="تكلفة">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>إعلانات تكلفة اليومية</title>
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="js-yaml.min.js"></script>
+    <meta name="theme-color" content="#2563eb">
 </head>
 
 <body>
-    <header>
-        <div class="header-content">
-            <h1>📢 إعلانات يومية جاهزة</h1>
-            <p>انسخ وانشر مباشرة لتطبيقك!</p>
+    <div class="container">
+        <header>
+            <div class="logo-area">
+                <h1>إعلانات تكلفة 🚀</h1>
+                <p>نصوص إعلانية يومية متجددة</p>
+            </div>
+            <div class="header-actions">
+                <a href="fixer.html" class="tool-link">🛠️ مصحح الصور</a>
+            </div>
+        </header>
+
+        <!-- Daily Image Section -->
+        <section class="daily-image-section">
+            <div class="section-header">
+                <h2>🎨 صورة اليوم (AI)</h2>
+                <span class="badge new">جديد</span>
+            </div>
+            <div class="image-card">
+                <div id="daily-image-wrapper" class="image-wrapper">
+                    <div class="placeholder-image">
+                        <span>اضغط لتوليد صورة اليوم</span>
+                    </div>
+                </div>
+                <button id="generate-daily-btn" class="action-btn generate-btn">
+                    ✨ توليد صورة حصرية لليوم
+                </button>
+            </div>
+        </section>
+
+        <div class="tabs">
+            <button class="tab active" data-target="x">منصة X 🐦</button>
+            <button class="tab" data-target="ig">انستقرام 📸</button>
+            <button class="tab" data-target="tiktok">تيك توك 🎵</button>
         </div>
-    </header>
 
-    <nav id="tabs">
-        <button class="tab active" data-target="x">
-            <span class="icon">🐦</span> منصة X
-        </button>
-        <button class="tab" data-target="ig">
-            <span class="icon">📸</span> إنستقرام
-        </button>
-        <button class="tab" data-target="tiktok">
-            <span class="icon">🎵</span> تيك توك
-        </button>
-    </nav>
+        <div id="ad-container" class="ad-grid theme-x">
+            <!-- Ads will be injected here -->
+            <div class="loading">جاري تحميل الإعلانات... 📡</div>
+        </div>
 
-    <main id="ad-container" class="ads-container">
-        <!-- Ads will be injected here -->
-    </main>
-
-    <footer>
-        <p>تم التطوير بواسطة ABO_OMAR | يتم التحديث يومياً 🤖</p>
-    </footer>
+        <footer>
+            <p>تم التحديث: <span id="last-update">اليوم</span></p>
+            <p class="version">v2.1 | Nano Banana Edition 🍌</p>
+        </footer>
+    </div>
 
     <!-- Hidden Canvas for Image Processing -->
-    <canvas id="canvas" width="1080" height="1080" style="display: none;"></canvas>
+    <canvas id="canvas" width="1080" height="1080" style="display:none;"></canvas>
 
-    <!-- Image Generation Modal -->
+    <!-- Image Modal -->
     <div id="image-modal" class="modal hidden">
-        <div class="modal-content image-modal-content">
-            <h2>🎨 صورتك جاهزة</h2>
-            <div class="image-preview-container">
-                <img id="generated-image" src="" alt="Generated Ad" />
-            </div>
-            <div class="modal-actions">
-                <button id="download-btn" class="action-btn">📥 حفظ الصورة</button>
-                <button id="close-image-modal" class="action-btn secondary">إغلاق</button>
-            </div>
-            <p class="note">تم دمج الشعار تلقائياً ✨</p>
+        <div class="modal-content">
+            <span id="close-image-modal" class="close">&times;</span>
+            <img id="generated-image" src="" alt="Generated Ad">
+            <button id="download-btn" class="action-btn">📥 تحميل الصورة</button>
         </div>
     </div>
 
-    <script src="./js-yaml.min.js"></script>
     <script src="script.js"></script>
 </body>
 

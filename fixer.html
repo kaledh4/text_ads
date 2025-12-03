@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مصحح نصوص الإعلانات - تكلفة</title>
+    <script src="js-yaml.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #60a5fa;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #94a3b8;
+        }
+
+        select, input[type="file"] {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #334155;
+            color: white;
+            font-family: inherit;
+        }
+
+        .canvas-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 2px dashed #475569;
+            min-height: 400px;
+            align-items: center;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: #475569;
+            color: white;
+        }
+
+        .instructions {
+            background: rgba(37, 99, 235, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🛠️ مصحح نصوص الإعلانات</h1>
+    
+    <div class="instructions">
+        <p><strong>كيف يعمل؟</strong></p>
+        <ol>
+            <li>ارفع الصورة التي قمت بتوليدها بالذكاء الاصطناعي (بدون نصوص أو بنصوص مشوهة).</li>
+            <li>اختر المدينة المناسبة من القائمة.</li>
+            <li>سيقوم الموقع بدمج النصوص العربية الصحيحة والجميلة تلقائياً.</li>
+            <li>حمل الصورة النهائية!</li>
+        </ol>
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label>1. اختر الصورة</label>
+            <input type="file" id="imageInput" accept="image/*">
+        </div>
+        <div class="control-group">
+            <label>2. اختر المدينة</label>
+            <select id="citySelect">
+                <option value="">جاري تحميل المدن...</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="canvas-container" id="canvasContainer">
+        <p style="color: #64748b">الرجاء رفع صورة للمعاينة</p>
+        <canvas id="canvas" style="display: none;"></canvas>
+    </div>
+
+    <div class="actions">
+        <button id="downloadBtn" class="btn-primary" disabled>📥 تحميل الصورة المعدلة</button>
+    </div>
+</div>
+
+<script>
+    let adsData = [];
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const imageInput = document.getElementById('imageInput');
+    const citySelect = document.getElementById('citySelect');
+    const downloadBtn = document.getElementById('downloadBtn');
+    let currentImage = null;
+
+    // Load YAML Data
+    async function loadData() {
+        try {
+            const response = await fetch('ads_tiktok.yaml');
+            const text = await response.text();
+            
+            if (typeof jsyaml !== 'undefined') {
+                adsData = jsyaml.load(text);
+                populateCities();
+            } else {
+                console.error('js-yaml library not loaded');
+            }
+        } catch (error) {
+            console.error('Error loading YAML:', error);
+        }
+    }
+
+    function populateCities() {
+        citySelect.innerHTML = '<option value="">-- اختر المدينة --</option>';
+        adsData.forEach(ad => {
+            if (ad.City) {
+                const option = document.createElement('option');
+                option.value = ad.City;
+                option.textContent = ad.City;
+                citySelect.appendChild(option);
+            }
+        });
+    }
+
+    // Handle Image Upload
+    imageInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = new Image();
+                img.onload = () => {
+                    currentImage = img;
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    canvas.style.display = 'block';
+                    document.getElementById('canvasContainer').querySelector('p').style.display = 'none';
+                    draw();
+                    downloadBtn.disabled = false;
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Handle City Selection
+    citySelect.addEventListener('change', draw);
+
+    function draw() {
+        if (!currentImage) return;
+
+        // Clear and draw original image
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(currentImage, 0, 0);
+
+        const selectedCity = citySelect.value;
+        if (!selectedCity) return;
+
+        const cityData = adsData.find(ad => ad.City === selectedCity);
+        if (!cityData) return;
+
+        // Draw Overlay
+        drawOverlay(cityData);
+    }
+
+    function drawOverlay(data) {
+        const w = canvas.width;
+        const h = canvas.height;
+
+        // 1. Title (Top Center)
+        const title = `مدينة ${data.City}`;
+        ctx.save();
+        
+        // Shadow/Glow for readability
+        ctx.shadowColor = "rgba(0,0,0,0.8)";
+        ctx.shadowBlur = 15;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 4;
+
+        ctx.font = `bold ${h * 0.08}px 'Cairo', sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillStyle = '#ffffff';
+        
+        // Draw Title
+        ctx.fillText(title, w / 2, h * 0.05);
+        ctx.restore();
+
+        // 2. Key Messages (Bottom Area)
+        if (data.KeyMessages && data.KeyMessages.length > 0) {
+            const msgs = data.KeyMessages;
+            const startY = h * 0.75;
+            const fontSize = h * 0.035;
+            const padding = fontSize * 0.8;
+            const gap = fontSize * 1.5;
+
+            ctx.font = `bold ${fontSize}px 'Cairo', sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            msgs.forEach((msg, i) => {
+                const y = startY + (i * gap);
+                const textMetrics = ctx.measureText(msg);
+                const textWidth = textMetrics.width;
+                const bgWidth = textWidth + (padding * 2);
+                const bgHeight = fontSize * 1.8;
+
+                // Draw Bubble Background
+                ctx.save();
+                ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+                ctx.shadowColor = "rgba(0,0,0,0.3)";
+                ctx.shadowBlur = 10;
+                
+                // Rounded Rectangle
+                roundRect(ctx, (w - bgWidth) / 2, y - bgHeight/2, bgWidth, bgHeight, 15);
+                ctx.fill();
+                ctx.restore();
+
+                // Draw Text
+                ctx.fillStyle = "#1e293b"; // Dark text
+                ctx.fillText(msg, w / 2, y);
+            });
+        }
+    }
+
+    function roundRect(ctx, x, y, width, height, radius) {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
+    }
+
+    // Download
+    downloadBtn.addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.download = `fixed_${citySelect.value || 'ad'}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    });
+
+    // Initialize
+    loadData();
+</script>
+
+</body>
+</html>
