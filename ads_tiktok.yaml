@@ -1,27 +1,10 @@
-# إعلانات TikTok بنمط Nano Banana
-# مشاهد 3D isometric لمدن سعودية مع رسائل تطبيق تكلفة
+# إعلانات TikTok - نمط الديوراما الواقعي (Hand-Held Diorama)
+# تم تحديث النمط ليكون "Hyper-realistic 3D Diorama" محمول باليد
+# عدد الإعلانات: 4
 
 - City: الرياض
   Prompt: |
-    Present a clear, 45° top-down isometric miniature 3D scene of Riyadh, Saudi Arabia.
-    
-    At the top-center, place the title "مدينة الرياض" in bold Arabic sans-serif text, with a small building icon beneath it, then "خدمات تكلفة" (small text) and "متاح الآن" (green medium text). Background is a soft, solid warm beige matching Saudi desert tones.
-    
-    The 3D scene shows:
-    - Miniature version of Kingdom Centre Tower and other iconic Riyadh landmarks
-    - Small 3D figures of merchants and service providers moving around
-    - Floating 3D text bubbles with messages:
-      * "حوّل أعمالك إلى تكلفة ↗"
-      * "وفر 70% من وقتك ⏰"
-      * "AI يرفع منتجاتك تلقائياً 🤖"
-      * "خدماتك على الخريطة 📍"
-    - Tiny shops and service locations marked with #تكلفة pins
-    - Small animated pathways showing customer flow between locations
-    
-    Color scheme: Warm desert tones (beige, sand, gold) with vibrant green accents for #تكلفة branding.
-    Style: Clean, modern, playful isometric 3D with soft shadows.
-    
-    Bottom text: "انضم لآلاف التجار في الرياض | #تكلفة"
+    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Riyadh. Feature its most iconic landmarks like the Kingdom Centre Tower, small-scale modern architecture, and lush miniature greenery. A bold 3D "RIYADH" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
   
   KeyMessages:
     - "حوّل أعمالك إلى تكلفة يخدمك"
@@ -38,26 +21,7 @@
 
 - City: جدة
   Prompt: |
-    Present a clear, 45° top-down isometric miniature 3D scene of Jeddah, Saudi Arabia.
-    
-    At the top-center, place the title "مدينة جدة" in bold Arabic sans-serif text, with a small palm tree icon beneath it, then "تكلفة للمتاجر" (small text) and "خدمة فورية" (blue medium text). Background is a soft, solid ocean blue gradient.
-    
-    The 3D scene shows:
-    - Miniature Jeddah Corniche waterfront with tiny palm trees
-    - King Fahd Fountain in miniature form
-    - Small 3D merchant figures managing stores
-    - Floating 3D text bubbles with messages:
-      * "متجرك على تكلفة = نجاح 📈"
-      * "رفع المنتجات بالAI ⚡"
-      * "عملاء أكثر بتكلفة أقل 💰"
-      * "قصص نجاح من جدة ⭐"
-    - Coastal business district with #تكلفة markers
-    - Animated order notifications flowing between locations
-    
-    Color scheme: Ocean blues, sandy beige, with coral and turquoise accents for coastal feel.
-    Style: Bright, optimistic isometric 3D with seaside atmosphere.
-    
-    Bottom text: "جدة تنمو مع تكلفة | انضم الآن"
+    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Jeddah. Feature its most iconic landmarks like the King Fahd Fountain, the Corniche waterfront, and small-scale coastal architecture. A bold 3D "JEDDAH" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
   
   KeyMessages:
     - "متجرك على تكلفة = نجاح مضمون"
@@ -74,26 +38,7 @@
 
 - City: الدمام
   Prompt: |
-    Present a clear, 45° top-down isometric miniature 3D scene of Dammam, Saudi Arabia.
-    
-    At the top-center, place the title "مدينة الدمام" in bold Arabic sans-serif text, with a small oil derrick icon beneath it, then "خدمات البناء" (small text) and "متوفر الآن" (orange medium text). Background is a soft, solid industrial grey with warm undertones.
-    
-    The 3D scene shows:
-    - Miniature industrial and commercial districts of Dammam
-    - Small construction sites and building material stores
-    - 3D service provider figures offering construction services
-    - Floating 3D text bubbles with messages:
-      * "خدمات البناء على الخريطة 🗺️"
-      * "تكامل متاجر + خدمات 🔧"
-      * "وصول فوري للعملاء 🚀"
-      * "نمو أعمالك مع تكلفة 📊"
-    - Network of construction service locations marked with pins
-    - Animated service request lines connecting customers to providers
-    
-    Color scheme: Industrial greys, construction orange, steel blue accents.
-    Style: Professional, industrial-modern isometric 3D with energy sector vibes.
-    
-    Bottom text: "الدمام تبني مع تكلفة | ابدأ اليوم"
+    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Dammam. Feature its most iconic landmarks, industrial port structures, and small-scale modern architecture. A bold 3D "DAMMAM" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
   
   KeyMessages:
     - "خدمات البناء على الخريطة"
@@ -110,26 +55,7 @@
 
 - City: مكة
   Prompt: |
-    Present a clear, 45° top-down isometric miniature 3D scene of Makkah, Saudi Arabia.
-    
-    At the top-center, place the title "مكة المكرمة" in bold Arabic sans-serif text with golden accents, with a small crescent moon icon beneath it, then "خدمات الحجاج" (small text) and "موسم الحج" (gold medium text). Background is a soft, solid cream with subtle Islamic patterns.
-    
-    The 3D scene shows:
-    - Miniature stylized representation of Makkah's mountainous landscape
-    - Small commercial districts serving pilgrims
-    - 3D merchant and service provider figures
-    - Floating 3D text bubbles with messages:
-      * "خدم ضيوف الرحمن 🕋"
-      * "منتجات وخدمات موثوقة ✨"
-      * "نمو تجارتك في موسم الحج 📿"
-      * "تكلفة يسهل عليك 🤲"
-    - Service locations for pilgrims marked with respectful icons
-    - Pathways showing service delivery to pilgrims
-    
-    Color scheme: Cream, gold, olive green, with respectful, dignified tones.
-    Style: Elegant, respectful isometric 3D with Islamic aesthetic touches.
-    
-    Bottom text: "خدمة ضيوف الرحمن | #تكلفة"
+    Create a hyper-realistic 1080x1080 square render of a human hand gently holding a rounded, beveled miniature display platform showcasing a 3D collectible diorama of Makkah. Feature its most iconic landmarks, the Clock Tower, mountainous terrain, and respectful small-scale architecture. A bold 3D "MAKKAH" sign is cleanly built into the front edge of the platform. Use a refined, desaturated color scheme with matte textures to enhance the realistic scale-model look. Light the scene with soft studio illumination, warm highlights, and subtle depth shadows. Place the composition against a neutral gray gradient backdrop, keeping the same viewing angle and perspective for consistency. Add atmospheric depth, photorealistic textures, and ultra-precise detailing for an 8K quality high-end collectible aesthetic.
   
   KeyMessages:
     - "خدم ضيوف الرحمن بكفاءة"
@@ -143,75 +69,3 @@
     - خدمات_الحجاج
     - موسم_الحج
     - تجارة_مكة
-
-- City: المدينة_المنورة
-  Prompt: |
-    Present a clear, 45° top-down isometric miniature 3D scene of Madinah, Saudi Arabia.
-    
-    At the top-center, place the title "المدينة المنورة" in bold Arabic sans-serif text with green accents, with a small dome icon beneath it, then "الخدمات المحلية" (small text) and "دائماً متاح" (green medium text). Background is a soft, solid pale green with subtle floral patterns.
-    
-    The 3D scene shows:
-    - Miniature peaceful cityscape of Madinah with date palm trees
-    - Small local businesses and service centers
-    - 3D figures representing local merchants and craftspeople
-    - Floating 3D text bubbles with messages:
-      * "تجارة محلية مزدهرة 🌴"
-      * "خدمات على مدار العام 🌙"
-      * "نمو مستدام مع تكلفة 🌱"
-      * "ثقة وجودة عالية ⭐"
-    - Traditional market areas integrated with modern tech
-    - Service network connecting the historic city
-    
-    Color scheme: Soft greens, earth tones, with touches of white and gold.
-    Style: Serene, traditional-meets-modern isometric 3D.
-    
-    Bottom text: "المدينة المنورة تنمو مع تكلفة | انضم للمجتمع"
-  
-  KeyMessages:
-    - "تجارة محلية مزدهرة"
-    - "خدمات على مدار العام"
-    - "نمو مستدام مع تكلفة"
-    - "ثقة وجودة في الخدمة"
-  
-  Hashtags:
-    - تكلفة
-    - المدينة_المنورة
-    - تجارة_محلية
-    - خدمات_موثوقة
-    - نمو_مستدام
-
-- City: أبها
-  Prompt: |
-    Present a clear, 45° top-down isometric miniature 3D scene of Abha, Saudi Arabia.
-    
-    At the top-center, place the title "مدينة أبها" in bold Arabic sans-serif text, with a small mountain icon beneath it, then "السياحة والخدمات" (small text) and "عروض خاصة" (purple medium text). Background is a soft, solid lavender with mountain mist effect.
-    
-    The 3D scene shows:
-    - Miniature mountainous landscape with fog effects
-    - Small tourist shops and service locations in highlands
-    - 3D figures of tourists and local service providers
-    - Floating 3D text bubbles with messages:
-      * "خدمات سياحية مميزة 🏔️"
-      * "منتجات محلية فريدة 🎨"
-      * "موسم الصيف = فرصة ذهبية ☀️"
-      * "تكلفة يربط السياح بك 🧳"
-    - Cable car routes and tourist service points
-    - Seasonal service offerings highlighted
-    
-    Color scheme: Cool purples, misty blues, forest greens, with fresh mountain air feel.
-    Style: Fresh, mountainous isometric 3D with tourism appeal.
-    
-    Bottom text: "أبها السياحية مع تكلفة | موسمك الذهبي"
-  
-  KeyMessages:
-    - "خدمات سياحية مميزة في أبها"
-    - "منتجات محلية فريدة"
-    - "موسم الصيف فرصة ذهبية"
-    - "تكلفة يربط السياح بأعمالك"
-  
-  Hashtags:
-    - تكلفة
-    - أبها
-    - سياحة_سعودية
-    - موسم_الصيف
-    - منتجات_محلية

@@ -10,9 +10,9 @@ const generatedImage = document.getElementById('generated-image');
 const downloadBtn = document.getElementById('download-btn');
 const closeImageModalBtn = document.getElementById('close-image-modal');
 
-// Daily Image Elements
-const dailyImageWrapper = document.getElementById('daily-image-wrapper');
-const generateDailyBtn = document.getElementById('generate-daily-btn');
+// Daily Image Elements - REMOVED
+// const dailyImageWrapper = document.getElementById('daily-image-wrapper');
+// const generateDailyBtn = document.getElementById('generate-daily-btn');
 
 // Preload Logo
 const logo = new Image();

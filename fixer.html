@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,7 +60,9 @@
             color: #94a3b8;
         }
 
-        select, input[type="file"] {
+        select,
+        input[type="file"],
+        input[type="text"] {
             padding: 10px;
             border-radius: 8px;
             border: 1px solid #475569;
@@ -123,211 +126,272 @@
             margin-bottom: 2rem;
             border: 1px solid rgba(37, 99, 235, 0.2);
         }
+
+        .custom-text-area {
+            grid-column: 1 / -1;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>🛠️ مصحح نصوص الإعلانات</h1>
-    
-    <div class="instructions">
-        <p><strong>كيف يعمل؟</strong></p>
-        <ol>
-            <li>ارفع الصورة التي قمت بتوليدها بالذكاء الاصطناعي (بدون نصوص أو بنصوص مشوهة).</li>
-            <li>اختر المدينة المناسبة من القائمة.</li>
-            <li>سيقوم الموقع بدمج النصوص العربية الصحيحة والجميلة تلقائياً.</li>
-            <li>حمل الصورة النهائية!</li>
-        </ol>
-    </div>
+    <div class="container">
+        <h1>🛠️ مصحح نصوص الإعلانات</h1>
 
-    <div class="controls">
-        <div class="control-group">
-            <label>1. اختر الصورة</label>
-            <input type="file" id="imageInput" accept="image/*">
+        <div class="instructions">
+            <p><strong>كيف يعمل؟</strong></p>
+            <ol>
+                <li>انسخ الـ Prompt (الخالي من النصوص) من الصفحة الرئيسية وولد الصورة.</li>
+                <li>ارفع الصورة هنا.</li>
+                <li>اختر المدينة لإضافة النصوص الرسمية، أو اكتب نصوصك الخاصة.</li>
+                <li>حمل الصورة النهائية!</li>
+            </ol>
         </div>
-        <div class="control-group">
-            <label>2. اختر المدينة</label>
-            <select id="citySelect">
-                <option value="">جاري تحميل المدن...</option>
-            </select>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>1. اختر الصورة</label>
+                <input type="file" id="imageInput" accept="image/*">
+            </div>
+            <div class="control-group">
+                <label>2. اختر المدينة (للنصوص الجاهزة)</label>
+                <select id="citySelect">
+                    <option value="">-- اختر المدينة --</option>
+                </select>
+            </div>
+
+            <div class="custom-text-area">
+                <label style="display:block; margin-bottom:10px;">أو خصص النصوص يدوياً:</label>
+                <div class="control-group" style="margin-bottom:10px;">
+                    <label>العنوان الرئيسي:</label>
+                    <input type="text" id="customTitle" placeholder="مثلاً: مدينة الرياض">
+                </div>
+                <div class="control-group">
+                    <label>الرسائل (افصل بينها بفاصلة):</label>
+                    <input type="text" id="customMessages" placeholder="رسالة 1, رسالة 2, رسالة 3">
+                </div>
+                <button id="applyCustomBtn" class="btn-secondary" style="margin-top:10px; width:100%;">تطبيق النصوص
+                    المخصصة</button>
+            </div>
+        </div>
+
+        <div class="canvas-container" id="canvasContainer">
+            <p style="color: #64748b">الرجاء رفع صورة للمعاينة</p>
+            <canvas id="canvas" style="display: none;"></canvas>
+        </div>
+
+        <div class="actions">
+            <button id="downloadBtn" class="btn-primary" disabled>📥 تحميل الصورة المعدلة</button>
         </div>
     </div>
 
-    <div class="canvas-container" id="canvasContainer">
-        <p style="color: #64748b">الرجاء رفع صورة للمعاينة</p>
-        <canvas id="canvas" style="display: none;"></canvas>
-    </div>
+    <script>
+        let adsData = [];
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const imageInput = document.getElementById('imageInput');
+        const citySelect = document.getElementById('citySelect');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const customTitleInput = document.getElementById('customTitle');
+        const customMessagesInput = document.getElementById('customMessages');
+        const applyCustomBtn = document.getElementById('applyCustomBtn');
 
-    <div class="actions">
-        <button id="downloadBtn" class="btn-primary" disabled>📥 تحميل الصورة المعدلة</button>
-    </div>
-</div>
+        let currentImage = null;
 
-<script>
-    let adsData = [];
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    const imageInput = document.getElementById('imageInput');
-    const citySelect = document.getElementById('citySelect');
-    const downloadBtn = document.getElementById('downloadBtn');
-    let currentImage = null;
+        // Load YAML Data
+        async function loadData() {
+            try {
+                const response = await fetch('ads_tiktok.yaml');
+                const text = await response.text();
 
-    // Load YAML Data
-    async function loadData() {
-        try {
-            const response = await fetch('ads_tiktok.yaml');
-            const text = await response.text();
-            
-            if (typeof jsyaml !== 'undefined') {
-                adsData = jsyaml.load(text);
-                populateCities();
-            } else {
-                console.error('js-yaml library not loaded');
+                if (typeof jsyaml !== 'undefined') {
+                    adsData = jsyaml.load(text);
+                    populateCities();
+                } else {
+                    console.error('js-yaml library not loaded');
+                }
+            } catch (error) {
+                console.error('Error loading YAML:', error);
             }
-        } catch (error) {
-            console.error('Error loading YAML:', error);
         }
-    }
 
-    function populateCities() {
-        citySelect.innerHTML = '<option value="">-- اختر المدينة --</option>';
-        adsData.forEach(ad => {
-            if (ad.City) {
-                const option = document.createElement('option');
-                option.value = ad.City;
-                option.textContent = ad.City;
-                citySelect.appendChild(option);
-            }
-        });
-    }
-
-    // Handle Image Upload
-    imageInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const img = new Image();
-                img.onload = () => {
-                    currentImage = img;
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    canvas.style.display = 'block';
-                    document.getElementById('canvasContainer').querySelector('p').style.display = 'none';
-                    draw();
-                    downloadBtn.disabled = false;
-                };
-                img.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    // Handle City Selection
-    citySelect.addEventListener('change', draw);
-
-    function draw() {
-        if (!currentImage) return;
-
-        // Clear and draw original image
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(currentImage, 0, 0);
-
-        const selectedCity = citySelect.value;
-        if (!selectedCity) return;
-
-        const cityData = adsData.find(ad => ad.City === selectedCity);
-        if (!cityData) return;
-
-        // Draw Overlay
-        drawOverlay(cityData);
-    }
-
-    function drawOverlay(data) {
-        const w = canvas.width;
-        const h = canvas.height;
-
-        // 1. Title (Top Center)
-        const title = `مدينة ${data.City}`;
-        ctx.save();
-        
-        // Shadow/Glow for readability
-        ctx.shadowColor = "rgba(0,0,0,0.8)";
-        ctx.shadowBlur = 15;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 4;
-
-        ctx.font = `bold ${h * 0.08}px 'Cairo', sans-serif`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'top';
-        ctx.fillStyle = '#ffffff';
-        
-        // Draw Title
-        ctx.fillText(title, w / 2, h * 0.05);
-        ctx.restore();
-
-        // 2. Key Messages (Bottom Area)
-        if (data.KeyMessages && data.KeyMessages.length > 0) {
-            const msgs = data.KeyMessages;
-            const startY = h * 0.75;
-            const fontSize = h * 0.035;
-            const padding = fontSize * 0.8;
-            const gap = fontSize * 1.5;
-
-            ctx.font = `bold ${fontSize}px 'Cairo', sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-
-            msgs.forEach((msg, i) => {
-                const y = startY + (i * gap);
-                const textMetrics = ctx.measureText(msg);
-                const textWidth = textMetrics.width;
-                const bgWidth = textWidth + (padding * 2);
-                const bgHeight = fontSize * 1.8;
-
-                // Draw Bubble Background
-                ctx.save();
-                ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
-                ctx.shadowColor = "rgba(0,0,0,0.3)";
-                ctx.shadowBlur = 10;
-                
-                // Rounded Rectangle
-                roundRect(ctx, (w - bgWidth) / 2, y - bgHeight/2, bgWidth, bgHeight, 15);
-                ctx.fill();
-                ctx.restore();
-
-                // Draw Text
-                ctx.fillStyle = "#1e293b"; // Dark text
-                ctx.fillText(msg, w / 2, y);
+        function populateCities() {
+            citySelect.innerHTML = '<option value="">-- اختر المدينة --</option>';
+            adsData.forEach(ad => {
+                if (ad.City) {
+                    const option = document.createElement('option');
+                    option.value = ad.City;
+                    option.textContent = ad.City;
+                    citySelect.appendChild(option);
+                }
             });
         }
-    }
 
-    function roundRect(ctx, x, y, width, height, radius) {
-        ctx.beginPath();
-        ctx.moveTo(x + radius, y);
-        ctx.lineTo(x + width - radius, y);
-        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-        ctx.lineTo(x + width, y + height - radius);
-        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-        ctx.lineTo(x + radius, y + height);
-        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-        ctx.lineTo(x, y + radius);
-        ctx.quadraticCurveTo(x, y, x + radius, y);
-        ctx.closePath();
-    }
+        // Handle Image Upload
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        currentImage = img;
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        canvas.style.display = 'block';
+                        document.getElementById('canvasContainer').querySelector('p').style.display = 'none';
+                        draw();
+                        downloadBtn.disabled = false;
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
-    // Download
-    downloadBtn.addEventListener('click', () => {
-        const link = document.createElement('a');
-        link.download = `fixed_${citySelect.value || 'ad'}.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-    });
+        // Handle City Selection
+        citySelect.addEventListener('change', () => {
+            const selectedCity = citySelect.value;
+            if (selectedCity) {
+                const cityData = adsData.find(ad => ad.City === selectedCity);
+                if (cityData) {
+                    // Pre-fill custom inputs
+                    customTitleInput.value = `مدينة ${cityData.City}`;
+                    if (cityData.KeyMessages) {
+                        customMessagesInput.value = cityData.KeyMessages.join(', ');
+                    }
+                    draw(cityData.City, cityData.KeyMessages);
+                }
+            }
+        });
 
-    // Initialize
-    loadData();
-</script>
+        // Handle Custom Text Apply
+        applyCustomBtn.addEventListener('click', () => {
+            const title = customTitleInput.value;
+            const messages = customMessagesInput.value.split(',').map(s => s.trim()).filter(s => s);
+            draw(null, null, title, messages);
+        });
+
+        function draw(cityName = null, messages = null, customTitle = null, customMsgs = null) {
+            if (!currentImage) return;
+
+            // Clear and draw original image
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(currentImage, 0, 0);
+
+            let titleToDraw = "";
+            let msgsToDraw = [];
+
+            if (customTitle) {
+                titleToDraw = customTitle;
+                msgsToDraw = customMsgs || [];
+            } else if (cityName) {
+                const cityData = adsData.find(ad => ad.City === cityName);
+                if (cityData) {
+                    titleToDraw = `مدينة ${cityData.City}`;
+                    msgsToDraw = cityData.KeyMessages || [];
+                }
+            } else {
+                // Try to use inputs if nothing else
+                if (customTitleInput.value) {
+                    titleToDraw = customTitleInput.value;
+                    msgsToDraw = customMessagesInput.value.split(',').map(s => s.trim()).filter(s => s);
+                }
+            }
+
+            if (titleToDraw) {
+                drawOverlay(titleToDraw, msgsToDraw);
+            }
+        }
+
+        function drawOverlay(title, messages) {
+            const w = canvas.width;
+            const h = canvas.height;
+
+            // 1. Title (Top Center)
+            ctx.save();
+
+            // Shadow/Glow for readability
+            ctx.shadowColor = "rgba(0,0,0,0.8)";
+            ctx.shadowBlur = 15;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 4;
+
+            ctx.font = `bold ${h * 0.08}px 'Cairo', sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+            ctx.fillStyle = '#ffffff';
+
+            // Draw Title
+            ctx.fillText(title, w / 2, h * 0.05);
+            ctx.restore();
+
+            // 2. Key Messages (Bottom Area)
+            if (messages && messages.length > 0) {
+                const startY = h * 0.75;
+                const fontSize = h * 0.035;
+                const padding = fontSize * 0.8;
+                const gap = fontSize * 1.5;
+
+                ctx.font = `bold ${fontSize}px 'Cairo', sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                messages.forEach((msg, i) => {
+                    const y = startY + (i * gap);
+                    const textMetrics = ctx.measureText(msg);
+                    const textWidth = textMetrics.width;
+                    const bgWidth = textWidth + (padding * 2);
+                    const bgHeight = fontSize * 1.8;
+
+                    // Draw Bubble Background
+                    ctx.save();
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+                    ctx.shadowColor = "rgba(0,0,0,0.3)";
+                    ctx.shadowBlur = 10;
+
+                    // Rounded Rectangle
+                    roundRect(ctx, (w - bgWidth) / 2, y - bgHeight / 2, bgWidth, bgHeight, 20);
+                    ctx.fill();
+                    ctx.restore();
+
+                    // Draw Text
+                    ctx.fillStyle = "#1e293b"; // Dark text
+                    ctx.fillText(msg, w / 2, y);
+                });
+            }
+        }
+
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        // Download
+        downloadBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = `fixed_ad_${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+
+        // Initialize
+        loadData();
+    </script>
 
 </body>
+
 </html>
