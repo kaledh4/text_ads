@@ -220,79 +220,102 @@ async function generateAds() {
     - تأكد أن حقل "SampleOutput" يحتوي على سيناريو *كامل* ومفيد.
     `;
 
-    try {
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${API_KEY}`,
-                'Content-Type': 'application/json',
-                'HTTP-Referer': 'https://github.com/kaledh4/text_ads', // Optional, for OpenRouter rankings
-                'X-Title': 'Taklifa Ads Generator'
-            },
-            body: JSON.stringify({
-                model: PRIMARY_MODEL,
-                messages: [{ role: "user", content: prompt }],
-                response_format: { type: "json_object" } // Force JSON if supported
-            })
-        });
+    // Try each model until one succeeds
+    let lastError = null;
+    for (let i = 0; i < MODELS_TO_TRY.length; i++) {
+        const currentModel = MODELS_TO_TRY[i];
+        console.log(`Attempting with model ${i + 1}/${MODELS_TO_TRY.length}: ${currentModel}`);
 
-        if (!response.ok) {
-            const errText = await response.text();
-            throw new Error(`API Error: ${response.status} ${response.statusText} - ${errText}`);
-        }
-
-        const data = await response.json();
-        let content = data.choices[0].message.content;
-
-        if (!content) throw new Error('Empty response from model');
-
-        // Clean markdown
-        content = content.replace(/```json|```/g, '').trim();
-
-        let adsData;
         try {
-            adsData = JSON.parse(content);
-        } catch (parseError) {
-            console.warn(`JSON parse failed: ${parseError.message}. Content: ${content.substring(0, 100)}...`);
-            // Attempt simple fix
-            const jsonMatch = content.match(/\{[\s\S]*\}/);
-            if (jsonMatch) {
-                adsData = JSON.parse(jsonMatch[0]);
-            } else {
-                throw parseError;
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${API_KEY}`,
+                    'Content-Type': 'application/json',
+                    'HTTP-Referer': 'https://github.com/kaledh4/text_ads',
+                    'X-Title': 'Taklifa Ads Generator'
+                },
+                body: JSON.stringify({
+                    model: currentModel,
+                    messages: [{ role: "user", content: prompt }],
+                    response_format: { type: "json_object" }
+                })
+            });
+
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`API Error: ${response.status} ${response.statusText} - ${errText}`);
+            }
+
+            const data = await response.json();
+            let content = data.choices[0].message.content;
+
+            if (!content) throw new Error('Empty response from model');
+
+            // Clean markdown
+            content = content.replace(/```json|```/g, '').trim();
+
+            let adsData;
+            try {
+                adsData = JSON.parse(content);
+            } catch (parseError) {
+                console.warn(`JSON parse failed: ${parseError.message}. Content: ${content.substring(0, 100)}...`);
+                // Attempt simple fix
+                const jsonMatch = content.match(/\{[\s\S]*\}/);
+                if (jsonMatch) {
+                    adsData = JSON.parse(jsonMatch[0]);
+                } else {
+                    throw parseError;
+                }
+            }
+
+            // Strict Validation
+            if (!adsData.x_ads || !Array.isArray(adsData.x_ads) || adsData.x_ads.length === 0) {
+                throw new Error('Missing or invalid x_ads');
+            }
+            if (!adsData.ig_ads || !Array.isArray(adsData.ig_ads) || adsData.ig_ads.length === 0) {
+                throw new Error('Missing or invalid ig_ads');
+            }
+            if (!adsData.tiktok_ads || !Array.isArray(adsData.tiktok_ads) || adsData.tiktok_ads.length === 0) {
+                throw new Error('Missing or invalid tiktok_ads');
+            }
+
+            // SUCCESS! Save the data
+            console.log(`✅ Success with model: ${currentModel}`);
+
+            // Convert to YAML format
+            const yaml = require('js-yaml');
+
+            // Save to YAML Files
+            fs.writeFileSync(ADS_X_FILE, yaml.dump(adsData.x_ads || [], { indent: 2, lineWidth: -1 }));
+            fs.writeFileSync(ADS_IG_FILE, yaml.dump(adsData.ig_ads || [], { indent: 2, lineWidth: -1 }));
+            fs.writeFileSync(ADS_TIKTOK_FILE, yaml.dump(adsData.tiktok_ads || [], { indent: 2, lineWidth: -1 }));
+            console.log("Saved ads to YAML files.");
+
+            // Save to DB
+            saveAdsToDB(adsData.x_ads || [], 'x');
+            saveAdsToDB(adsData.ig_ads || [], 'ig');
+            saveAdsToDB(adsData.tiktok_ads || [], 'tiktok');
+            console.log("Saved ads to SQLite database.");
+
+            // Exit the function successfully
+            return;
+
+        } catch (error) {
+            lastError = error;
+            console.error(`❌ Model ${currentModel} failed:`, error.message);
+
+            // If this isn't the last model, continue to next
+            if (i < MODELS_TO_TRY.length - 1) {
+                console.log(`Trying next model...`);
+                continue;
             }
         }
-
-        // Strict Validation
-        if (!adsData.x_ads || !Array.isArray(adsData.x_ads) || adsData.x_ads.length === 0) {
-            throw new Error('Missing or invalid x_ads');
-        }
-        if (!adsData.ig_ads || !Array.isArray(adsData.ig_ads) || adsData.ig_ads.length === 0) {
-            throw new Error('Missing or invalid ig_ads');
-        }
-        if (!adsData.tiktok_ads || !Array.isArray(adsData.tiktok_ads) || adsData.tiktok_ads.length === 0) {
-            throw new Error('Missing or invalid tiktok_ads');
-        }
-
-        // Convert to YAML format
-        const yaml = require('js-yaml');
-
-        // Save to YAML Files
-        fs.writeFileSync(ADS_X_FILE, yaml.dump(adsData.x_ads || [], { indent: 2, lineWidth: -1 }));
-        fs.writeFileSync(ADS_IG_FILE, yaml.dump(adsData.ig_ads || [], { indent: 2, lineWidth: -1 }));
-        fs.writeFileSync(ADS_TIKTOK_FILE, yaml.dump(adsData.tiktok_ads || [], { indent: 2, lineWidth: -1 }));
-        console.log("Saved ads to YAML files.");
-
-        // Save to DB
-        saveAdsToDB(adsData.x_ads || [], 'x');
-        saveAdsToDB(adsData.ig_ads || [], 'ig');
-        saveAdsToDB(adsData.tiktok_ads || [], 'tiktok');
-        console.log("Saved ads to SQLite database.");
-
-    } catch (error) {
-        console.error("Generation failed:", error);
-        process.exit(1);
     }
+
+    // If we get here, all models failed
+    console.error("All models failed. Last error:", lastError);
+    throw new Error(`All ${MODELS_TO_TRY.length} models failed. Last error: ${lastError.message}`);
 }
 
 // Main execution
