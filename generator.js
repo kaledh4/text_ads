@@ -15,14 +15,18 @@ const API_URL = "https://openrouter.ai/api/v1/chat/completions";
 const API_KEY = process.env.OPENROUTER_API_KEY; // User requested GitHub Secret
 
 // Model
-// User confirmed: x-ai/grok-4.1-fast:free exists and is free.
-const PRIMARY_MODEL = "x-ai/grok-4.1-fast:free";
+// Using reliable free models optimized for creative content generation
+const PRIMARY_MODEL = "qwen/qwen3-235b-a22b:free"; // Best free model for creative tasks
 
 const MODELS_TO_TRY = [
-    "x-ai/grok-4.1-fast:free", // Primary free model
-    "x-ai/grok-2-1212", // Fallback standard
-    "google/gemini-2.0-flash-exp:free", // Free fallback
-    "meta-llama/llama-3.3-70b-instruct:free" // Another free fallback
+    "qwen/qwen3-235b-a22b:free", // Primary - excellent for creative content
+    "google/gemini-2.0-flash-exp:free", // Good fallback
+    "allenai/olmo-3-32b-think:free", // Thinking model for quality
+    "amazon/nova-2-lite-v1:free", // AWS model
+    "tngtech/tng-r1t-chimera:free", // Alternative reasoning model
+    "qwen/qwen3-4b:free", // Smaller but fast
+    "google/gemma-3n-e4b-it:free", // Google's efficient model
+    "z-ai/glm-4.5-air:free" // Final fallback
 ];
 
 // CREATIVE PROMPT VARIATIONS
@@ -171,6 +175,7 @@ async function generateAds() {
        - **الأسلوب البصري (Visual Style):**
          * يجب أن يكون إعلانان (2) بأسلوب "يد تمسك منصة عرض مصغرة" (Human hand holding a miniature display platform).
          * يجب أن يكون إعلانان (2) بأسلوب "آيزومتريك ثلاثي الأبعاد" (Isometric 3D).
+       - **نسبة العرض (Aspect Ratio):** يجب أن تكون جميع الصور بنسبة 9:16 (عمودي) بدقة 1080x1920 بكسل، مناسبة للهواتف المحمولة.
        - **حقل Prompt:** يجب أن يكون **باللغة الإنجليزية فقط** (English Only).
        - **النصوص في الصورة:** يمنع منعاً باتاً طلب نصوص عربية داخل الصورة لتجنب مشاكل الخطوط. النص الوحيد المسموح به هو "Taklifa App" بالإنجليزية.
 
@@ -197,7 +202,7 @@ async function generateAds() {
         "tiktok_ads": [
             {
                 "City": "اسم المدينة (بالعربي)",
-                "Prompt": "وصف المشهد بالإنجليزية فقط (English Only). ابدأ بـ 'Create a hyper-realistic...'. صف المعالم بدقة. حدد الأسلوب (Hand holding OR Isometric).",
+                "Prompt": "وصف المشهد بالإنجليزية فقط (English Only). ابدأ بـ 'Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920)...'. صف المعالم بدقة. حدد الأسلوب (Hand holding OR Isometric).",
                 "KeyMessages": [
                     "رسالة تسويقية قصيرة 1",
                     "رسالة تسويقية قصيرة 2",
