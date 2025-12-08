@@ -15,18 +15,14 @@ const API_URL = "https://openrouter.ai/api/v1/chat/completions";
 const API_KEY = process.env.OPENROUTER_API_KEY; // User requested GitHub Secret
 
 // Model
-// Using reliable free models optimized for creative content generation
-const PRIMARY_MODEL = "qwen/qwen3-235b-a22b:free"; // Best free model for creative tasks
+// User confirmed: x-ai/grok-4.1-fast:free exists and is free.
+const PRIMARY_MODEL = "google/gemma-3n-e4b-it:free";
 
 const MODELS_TO_TRY = [
-    "qwen/qwen3-235b-a22b:free", // Primary - excellent for creative content
-    "google/gemini-2.0-flash-exp:free", // Good fallback
-    "allenai/olmo-3-32b-think:free", // Thinking model for quality
-    "amazon/nova-2-lite-v1:free", // AWS model
-    "tngtech/tng-r1t-chimera:free", // Alternative reasoning model
-    "qwen/qwen3-4b:free", // Smaller but fast
-    "google/gemma-3n-e4b-it:free", // Google's efficient model
-    "z-ai/glm-4.5-air:free" // Final fallback
+    "google/gemma-3n-e4b-it:free", // Primary free model
+    "qwen/qwen3-coder:free",
+    "openai/gpt-oss-120b:free",
+    "google/gemini-2.0-flash-exp:free"
 ];
 
 // CREATIVE PROMPT VARIATIONS
@@ -202,7 +198,7 @@ async function generateAds() {
         "tiktok_ads": [
             {
                 "City": "اسم المدينة (بالعربي)",
-                "Prompt": "وصف المشهد بالإنجليزية فقط (English Only). ابدأ بـ 'Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920)...'. صف المعالم بدقة. حدد الأسلوب (Hand holding OR Isometric).",
+                "Prompt": "وصف المشهد بالإنجليزية فقط (English Only). ابدأ بـ 'Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920)...'. صف المعالم بدقة. حدد الأسلوب (Hand holding OR Isometric). تأكد من ذكر الأبعاد.",
                 "KeyMessages": [
                     "رسالة تسويقية قصيرة 1",
                     "رسالة تسويقية قصيرة 2",
@@ -238,7 +234,7 @@ async function generateAds() {
                 body: JSON.stringify({
                     model: currentModel,
                     messages: [{ role: "user", content: prompt }],
-                    response_format: { type: "json_object" }
+                    // response_format: { type: "json_object" }
                 })
             });
 
