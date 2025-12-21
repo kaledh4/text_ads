@@ -1,42 +1,16 @@
-- City: أبها
-  Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) showing a human hand holding a miniature display platform showcasing Taklifa App's stores section featuring AI-generated building materials and services icons floating in misty mountains. Abha city skyline with lush greenery and foggy hills in the background. Use cool tones of blue and green with soft lighting.
-  KeyMessages:
-    - AI builds your store fast!
-    - Grow sales effortlessly
-    - Free sign-up to start!
-    - Smart business waiting
-  Hashtags:
-    - '#تكلفة'
-    - '#AbhaBuild'
-    - '#RetailInnovation'
-    - '#SmartRevenue'
-    - '#EntrepreneurMindset'
 - City: الرياض
-  Prompt: 'Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) in isometric 3D style showing Taklifa App ecosystem: floating miniature stores auto-uploaded by AI, service providers seen on interactive map interface around Riyadh skyline. Modern towers and financial district backdrop with bright sunlight highlighting sharp edges.'
+  Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) showing a human hand holding a miniature display platform showcasing Taklifa App's stores section featuring AI-generated building materials. Riyadh skyline with Al Faisaliah Tower and modern construction sites in the background. Use vibrant colors depicting Saudi innovation and progress with dynamic lighting.
   KeyMessages:
-    - Automate product uploads
-    - Connect directly with clients
-    - All tools you need free
-    - High ROI starts today
+    - AI uploads, instant sales!
+    - Save time, gain customers
+    - Start Free, grow big
+    - Your digital store is ready!
   Hashtags:
     - '#تكلفة'
-    - '#DigitalRetailKSA'
-    - '#SmartCityRiyadh'
-    - '#BusinessFuture'
-    - '#AICommerce'
-- City: الخبر
-  Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) showing a human hand holding a miniature display platform showcasing Taklifa App with AI-generated furniture items in modern Dammam skyline view including King Fahd Park and corniche. Blue and teal color scheme with oceanic reflections and dynamic lighting.
-  KeyMessages:
-    - List products instantly!
-    - Skyrocket your revenue
-    - 5-minute setup online
-    - AI works while you sleep
-  Hashtags:
-    - '#تكلفة'
-    - '#DammamDesigns'
-    - '#RetailGrowth'
-    - '#AIUpcycle'
-    - '#GrowthWithUs'
+    - '#AIinRetail'
+    - '#ShopSmart'
+    - '#RiyadhBusiness'
+    - '#GrowthHacking'
 - City: جدة
   Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) in isometric 3D style showcasing Taklifa App ecosystem including AI-powered product listings within interactive mini-stores and floating service providers over Jeddah waterfront area. Vibrant Red Sea hues and shimmering sunlight reflected on buildings and sea waves.
   KeyMessages:
@@ -50,3 +24,29 @@
     - '#FutureRetailer'
     - '#AIInnovation'
     - '#BusinessBooster'
+- City: الدمام
+  Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) showing a human hand holding a miniature display platform showcasing Taklifa App's stores section featuring AI-generated construction tools, The Dammam skyline with the King Abdulaziz Center for World Culture and the Arabian Gulf in distance. Use colors associated with industry and safety while maintaining an aesthetic appeal.
+  KeyMessages:
+    - Click! List it! Sell it!
+    - AI doubles your sales now!
+    - Join 5000+ vendors
+    - Free Sign-Up!
+  Hashtags:
+    - '#تكلفة'
+    - '#ModernTrade'
+    - '#StartupNation'
+    - '#CashflowControl'
+    - '#BusinessMastery'
+- City: أبها
+  Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) showing a human hand holding a miniature display platform showcasing Taklifa App's stores section featuring AI-generated building materials and services icons floating in misty mountains. Abha city skyline with lush greenery and foggy hills in the background. Use cool tones of blue and green with soft lighting.
+  KeyMessages:
+    - AI builds your store fast!
+    - Grow sales effortlessly
+    - Free sign-up to start!
+    - Smart business waiting
+  Hashtags:
+    - '#تكلفة'
+    - '#AbhaBuild'
+    - '#RetailInnovation'
+    - '#SmartRevenue'
+    - '#EntrepreneurMindset'
