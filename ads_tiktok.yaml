@@ -24,19 +24,6 @@
     - '#FutureRetailer'
     - '#AIInnovation'
     - '#BusinessBooster'
-- City: الدمام
-  Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) showing a human hand holding a miniature display platform showcasing Taklifa App's stores section featuring AI-generated construction tools, The Dammam skyline with the King Abdulaziz Center for World Culture and the Arabian Gulf in distance. Use colors associated with industry and safety while maintaining an aesthetic appeal.
-  KeyMessages:
-    - Click! List it! Sell it!
-    - AI doubles your sales now!
-    - Join 5000+ vendors
-    - Free Sign-Up!
-  Hashtags:
-    - '#تكلفة'
-    - '#ModernTrade'
-    - '#StartupNation'
-    - '#CashflowControl'
-    - '#BusinessMastery'
 - City: أبها
   Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) showing a human hand holding a miniature display platform showcasing Taklifa App's stores section featuring AI-generated building materials and services icons floating in misty mountains. Abha city skyline with lush greenery and foggy hills in the background. Use cool tones of blue and green with soft lighting.
   KeyMessages:
@@ -50,3 +37,16 @@
     - '#RetailInnovation'
     - '#SmartRevenue'
     - '#EntrepreneurMindset'
+- City: الدمام
+  Prompt: 'Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) in isometric 3D style showing Taklifa App ecosystem: floating miniature stores auto-uploaded by AI, service providers seen on interactive map interface around Dammam skyline. King Abdulaziz Center for World Culture and industrial harbor in the background with industrial tones and sharp contrasts.'
+  KeyMessages:
+    - Next-level inventory
+    - Zero data entry
+    - Local clients, global tools
+    - Free forever
+  Hashtags:
+    - '#تكلفة'
+    - '#EastProvGrowth'
+    - '#DigitalTradeKSA'
+    - '#IndustrialInnovation'
+    - '#SmartStores'
