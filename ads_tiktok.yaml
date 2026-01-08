@@ -25,28 +25,28 @@
     - '#SmartDelivery'
     - '#EcommerceKSA'
 - City: الدمام
-  Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) in isometric 3D style displaying Taklifa App ecosystem where virtual exhibitor kiosks float over modern neighborhoods of Dammam. Use calming tones blended with deep organic textures like concrete and glass with golden sunlight brushing ambient urban reflections.
+  Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) showing a human hand holding a miniature display platform. The platform showcases Taklifa App's services section featuring construction professionals. Modern Dammam skyline is visible in the background with Najd architecture outlines. Use calming tones with sunlight fading into urban ambient lighting.
+  KeyMessages:
+    - List Services with AI
+    - Direct Client Contact
+    - No Fees, Full Profit
+    - Smart Growth Tools
+  Hashtags:
+    - '#تكلفة'
+    - '#DammamServices'
+    - '#BusinessGrowth'
+    - '#SmartRetail'
+    - '#FutureOfServices'
+- City: أبها
+  Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) in isometric 3D style displaying Taklifa App ecosystem floating over the mountainous terrain and foggy landscapes of Abha. Virtual exhibitor kiosks showcase furniture stores and interior designers amidst shroud greenery and misty highland views. Use cool tones with strong natural textures like wood and stone.
   KeyMessages:
     - Smart Uploads, Zero Effort
     - Save up to 30%
     - Connect Directly to Clients
     - Automate and Grow
   Hashtags:
-    - '#تكلفة'
-    - '#DammamServices'
-    - '#BusinessGrowth'
-    - '#FutureOfFurniture'
-    - '#AIinRetail'
-- City: مكة
-  Prompt: Create a hyper-realistic vertical phone ad (9:16 aspect ratio, 1080x1920) showing a human hand holding a miniature display platform. The platform showcases Taklifa App's stores section featuring furniture. The Holy Kaaba and Masjid al-Haram are visible in the background. Utilize a color palette emphasizing trust and reliability with subtle, warm lighting.
-  KeyMessages:
-    - List Products with AI
-    - Expand Client Network
-    - Smart logistics, less cost
-    - Grow with Smart tools
-  Hashtags:
-    - '#تكلفة'
-    - '#MeccaBusiness'
-    - '#SmartRetail'
-    - '#BusinessGrowth'
-    - '#CostSavings'
+    - '# стоимость'
+    - '#AbhaBusiness'
+    - '#MountainRetail'
+    - '#AIinServices'
+    - '#DigitalMountains'
